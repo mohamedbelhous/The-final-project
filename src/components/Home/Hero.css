@@ -1,0 +1,612 @@
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+  position: relative;
+
+  min-height: 500px;
+
+  overflow: visible;
+
+  background: #dfe9e6;
+}
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+
+  z-index: 0;
+}
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.93) 22%,
+    rgba(255, 255, 255, 0.45) 47%,
+    rgba(255, 255, 255, 0.05) 72%
+  );
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+
+  width: min(100% - 120px, 1400px);
+
+  min-height: 500px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: flex-start;
+}
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.hero-content {
+  padding-top: 68px;
+
+  max-width: 470px;
+}
+
+.hero-title {
+  margin: 0;
+
+  color: #151b24;
+
+  font-size: clamp(44px, 4vw, 58px);
+  line-height: 1.02;
+
+  font-weight: 700;
+
+  letter-spacing: -2.2px;
+}
+
+.hero-title span {
+  color: #176b50;
+}
+
+.hero-description {
+  margin: 16px 0 24px;
+
+  color: #424b55;
+
+  font-size: 16px;
+  line-height: 1.55;
+
+  font-weight: 400;
+}
+
+/* =========================================
+   HERO CTA
+========================================= */
+
+.hero-cta {
+  height: 44px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 0 8px 0 21px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #176b50;
+  color: white;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hero-cta:hover {
+  background: #12563f;
+
+  transform: translateY(-2px);
+}
+
+.hero-cta-icon {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: white;
+
+  color: #176b50;
+}
+
+/* =========================================
+   SEARCH CARD
+========================================= */
+
+.hero-search-card {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: -34px;
+
+  padding: 20px 20px 18px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid rgba(225, 229, 227, 0.9);
+
+  box-shadow:
+    0 12px 35px rgba(24, 39, 32, 0.1),
+    0 3px 10px rgba(24, 39, 32, 0.04);
+
+  backdrop-filter: blur(15px);
+}
+
+/* =========================================
+   SEARCH CARD HEADER
+========================================= */
+
+.search-card-header {
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding-left: 5px;
+}
+
+.search-card-header h2 {
+  margin: 0;
+
+  color: #182029;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* =========================================
+   TRAVEL PATH
+========================================= */
+
+.travel-path {
+  display: flex;
+  align-items: center;
+
+  width: 105px;
+  height: 28px;
+
+  position: relative;
+}
+
+.travel-path span {
+  position: absolute;
+
+  border-top: 1.5px dashed #176b50;
+
+  width: 42px;
+}
+
+.travel-path span:nth-child(1) {
+  left: 0;
+  top: 10px;
+
+  transform: rotate(7deg);
+}
+
+.travel-path span:nth-child(2) {
+  left: 27px;
+  top: 15px;
+
+  transform: rotate(-9deg);
+}
+
+.travel-path span:nth-child(3) {
+  left: 51px;
+  top: 8px;
+
+  transform: rotate(10deg);
+}
+
+.travel-path svg {
+  position: absolute;
+
+  right: 0;
+
+  color: #176b50;
+
+  transform: rotate(-12deg);
+}
+
+/* =========================================
+   SEARCH FIELDS
+========================================= */
+
+.search-fields {
+  min-height: 57px;
+
+  display: flex;
+  align-items: stretch;
+
+  margin-top: 7px;
+
+  border: 1px solid #e7ebe9;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+}
+
+.search-field {
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 18px;
+
+  border-right: 1px solid #e4e8e6;
+}
+
+.search-field-icon {
+  flex-shrink: 0;
+
+  color: #172029;
+}
+
+.search-field-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.search-field-label {
+  color: #252d35;
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.search-field-value {
+  overflow: hidden;
+
+  color: #747d84;
+
+  font-size: 11px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* =========================================
+   SEARCH BUTTON
+========================================= */
+
+.search-button {
+  flex-shrink: 0;
+
+  align-self: center;
+
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin: 0 8px;
+
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #176b50;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.search-button:hover {
+  background: #12563f;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+  .hero-container {
+    width: min(100% - 48px, 1400px);
+  }
+
+  .search-field {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .search-button {
+    padding: 0 15px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+  .hero {
+    min-height: 620px;
+  }
+
+  .hero-background {
+    background-position: 62% center;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.88) 42%,
+      rgba(255, 255, 255, 0.25) 100%
+    );
+  }
+
+  .hero-container {
+    width: calc(100% - 32px);
+
+    min-height: 620px;
+  }
+
+  .hero-content {
+    padding-top: 50px;
+
+    max-width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(40px, 11vw, 54px);
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  /* Search becomes vertical */
+
+  .hero-search-card {
+    bottom: -190px;
+
+    padding: 17px;
+
+    border-radius: 16px;
+  }
+
+  .search-fields {
+    flex-direction: column;
+
+    border: none;
+
+    gap: 8px;
+
+    overflow: visible;
+  }
+
+  .search-field {
+    min-height: 52px;
+
+    border: 1px solid #e7ebe9;
+    border-radius: 10px;
+
+    background: white;
+  }
+
+  .search-button {
+    width: calc(100% - 16px);
+
+    margin: 8px;
+
+    height: 44px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .hero-container {
+    width: calc(100% - 24px);
+  }
+
+  .hero-content {
+    padding-top: 42px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+
+    letter-spacing: -1.5px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .hero-search-card {
+    bottom: -205px;
+  }
+
+  .search-card-header h2 {
+    font-size: 16px;
+  }
+}
+
+/* =========================================
+   HERO ENTRANCE ANIMATION
+========================================= */
+
+.hero-content {
+  animation: heroContentReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.hero-title {
+  animation: heroTitleReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+.hero-description {
+  animation: heroDescriptionReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+.hero-cta {
+  animation: heroButtonReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.52s both;
+}
+
+.hero-search-card {
+  animation: heroSearchReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.62s both;
+}
+
+/* =========================================
+   KEYFRAMES
+========================================= */
+
+@keyframes heroContentReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroTitleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroDescriptionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroButtonReveal {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroSearchReveal {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content,
+  .hero-title,
+  .hero-description,
+  .hero-cta,
+  .hero-search-card {
+    animation: none;
+  }
+}
+
+.search-field-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: inherit;
+  width: 100%;
+}
+
+.search-field-input::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}

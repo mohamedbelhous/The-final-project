@@ -1,0 +1,17 @@
+{
+  "home": {
+    "heroTitle": "Explore the Beauty of Algeria",
+    "heroSubtitle": "Discover stunning Saharan landscapes, historic coastlines, and rich culture.",
+    "exploreBtn": "Explore Destinations"
+  },
+  "about": {
+    "title": "About Rahla",
+    "description": "Rahla is your premier guide to discovering Algeria's hidden travel gems.",
+    "mission": "Our mission is to make travel booking simple and accessible for everyone."
+  },
+  "destinations": {
+    "title": "Popular Destinations",
+    "searchPlaceholder": "Search destinations...",
+    "filterAll": "All Region"
+  }
+}

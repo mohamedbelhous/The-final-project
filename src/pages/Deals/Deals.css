@@ -1,0 +1,373 @@
+.deals-page {
+  background-color: #f8fafc;
+  color: #0f172a;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* Hero Header */
+.deals-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1a2e26 100%);
+  color: #ffffff;
+  padding: 60px 20px 80px;
+  text-align: center;
+}
+
+.deals-hero-content {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.deals-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(249, 115, 22, 0.15);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fdba74;
+  margin-bottom: 16px;
+}
+
+.deals-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.deals-hero h1 span {
+  color: #34d399;
+}
+
+.deals-hero p {
+  font-size: 1rem;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+/* Layout */
+.deals-layout {
+  max-width: 1140px;
+  margin: -40px auto 0;
+  padding: 0 20px;
+}
+
+/* Flash Sale Card */
+.flash-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border: 2px solid #34d399;
+  box-shadow: 0 12px 30px rgba(23, 107, 80, 0.12);
+  margin-bottom: 40px;
+}
+
+.flash-image-wrapper {
+  position: relative;
+  min-height: 300px;
+}
+
+.flash-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flash-tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #176b50;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flash-details {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flash-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fef2f2;
+  color: #ef4444;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  width: fit-content;
+  margin-bottom: 12px;
+}
+
+.flash-details h2 {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.flash-location {
+  font-size: 0.85rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.flash-desc {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.flash-pricing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-right: 6px;
+}
+
+.new-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.save-badge {
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-left: 8px;
+}
+
+.promo-copy-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px dashed #176b50;
+  padding: 4px 6px 4px 12px;
+  border-radius: 8px;
+}
+
+.code-text {
+  font-weight: 700;
+  color: #176b50;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+}
+
+.copy-btn {
+  background: #176b50;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Category Filter Buttons */
+.deals-category-bar {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+
+.category-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.category-btn.active {
+  background: #176b50;
+  color: #ffffff;
+  border-color: #176b50;
+}
+
+/* Grid Cards */
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.deal-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.deal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.deal-thumb {
+  position: relative;
+  height: 170px;
+}
+
+.deal-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.discount-pill {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.deal-body {
+  padding: 18px;
+}
+
+.deal-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.deal-location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.deal-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+}
+
+.deal-body h3 {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 14px;
+  color: #0f172a;
+}
+
+.deal-pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.original-val {
+  text-decoration: line-through;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-right: 6px;
+}
+
+.current-val {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #176b50;
+}
+
+.validity {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* Ticket Coupon Cutout */
+.voucher-box {
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px dashed #cbd5e1;
+}
+
+.voucher-code {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #334155;
+}
+
+.voucher-btn {
+  background: #0f172a;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;   
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.voucher-btn.copied {
+  background: #176b50;
+}
+
+/* Responsive */
+@media (max-width: 840px) {
+  .flash-card {
+    grid-template-columns: 1fr;
+  }
+}

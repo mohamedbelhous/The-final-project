@@ -1,0 +1,110 @@
+.profile-container {
+  min-height: calc(100vh - 64px);
+  background-color: #f8faf9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.profile-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 20px;
+  border: 1px solid #e7ece9;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.profile-header {
+  background: linear-gradient(135deg, #176b50, #0e3a2b);
+  padding: 36px 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.avatar-circle {
+  width: 88px;
+  height: 88px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+
+.user-title-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.user-role-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.profile-body {
+  padding: 28px;
+}
+
+.section-title {
+  font-size: 1rem;
+  color: #1f2937;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: #f8faf9;
+  border-radius: 12px;
+  border: 1px solid #edf2f0;
+}
+
+.info-icon {
+  color: #176b50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-content label {
+  display: block;
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.info-content p {
+  font-size: 0.95rem;
+  color: #111827;
+  font-weight: 600;
+}
+
+.profile-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px);
+  font-weight: 600;
+  color: #176b50;
+}

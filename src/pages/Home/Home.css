@@ -1,0 +1,81 @@
+/* =========================================
+   HOME PAGE
+========================================= */
+
+.home-page {
+  width: 100%;
+  min-height: 100vh;
+
+  overflow-x: clip;
+
+  background: #ffffff;
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.home-page > .scroll-reveal {
+  width: 100%;
+  position: relative;
+}
+
+.home-page > .scroll-reveal > section {
+  width: 100%;
+  position: relative;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.home-page > .hero {
+  margin-bottom: 34px;
+}
+
+/* =========================================
+   IMAGES
+========================================= */
+
+.home-page img {
+  max-width: 100%;
+}
+
+/* =========================================
+   INTERACTIVE ELEMENTS
+========================================= */
+
+.home-page button,
+.home-page a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+  .home-page > .hero {
+    margin-bottom: 34px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+  .home-page > .hero {
+    margin-bottom: 190px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .home-page > .hero {
+    margin-bottom: 205px;
+  }
+}

@@ -1,0 +1,173 @@
+.my-trips-page {
+  background-color: #f8fafc;
+  min-height: 85vh;
+  padding: 40px 20px 80px;
+  direction: ltr;
+}
+
+.trips-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.trips-header {
+  margin-bottom: 32px;
+}
+
+.trips-header h1 {
+  font-size: 2.2rem;
+  color: #0f172a;
+}
+
+.trips-header h1 span {
+  color: #176b50;
+}
+
+.trips-header p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+.empty-trips {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 60px 20px;
+  text-align: center;
+  border: 1px dashed #cbd5e1;
+}
+
+.empty-trips h3 {
+  margin: 16px 0 8px;
+  color: #0f172a;
+}
+
+.empty-trips p {
+  color: #64748b;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #176b50;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.trips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.trip-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.trip-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.booking-ref {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-badge.confirmed {
+  background: #ecfdf5;
+  color: #059669;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.trip-card-body h3 {
+  font-size: 1.1rem;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.trip-location {
+  font-size: 0.85rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.trip-details-row {
+  display: flex;
+  gap: 16px;
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: #334155;
+}
+
+.trip-details-row div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trip-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.trip-price small {
+  display: block;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.trip-price strong {
+  font-size: 1.2rem;
+  color: #176b50;
+}
+
+.cancel-btn {
+  background: transparent;
+  border: 1px solid #fecaca;
+  color: #ef4444;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.cancel-btn:hover {
+  background: #fef2f2;
+}
