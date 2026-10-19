@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Clock3, MapPin, Percent } from "lucide-react";
 import API from "../../../services/api";
+import { deals as fallbackDeals } from "../../../data/deals";
 import "./SpecialDeals.css";
 
 function SpecialDeals() {
@@ -10,25 +11,26 @@ function SpecialDeals() {
   const navigate = useNavigate();
   const [deals, setDeals] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     API.get("/deals")
       .then((res) => {
-        // Safe extraction whether the API wraps data in .data or returns an array directly
         const dealsData = Array.isArray(res.data)
           ? res.data
           : Array.isArray(res.data?.data)
             ? res.data.data
             : [];
 
-        setDeals(dealsData);
+        if (dealsData.length > 0) {
+          setDeals(dealsData);
+        } else {
+          setDeals(fallbackDeals || []);
+        }
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching deals:", err);
-        setError("Unable to load special deals at this time.");
-        setDeals([]);
+        console.error("Error fetching deals, using fallback:", err);
+        setDeals(fallbackDeals || []);
         setLoading(false);
       });
   }, []);
@@ -37,8 +39,8 @@ function SpecialDeals() {
     return <div className="text-center py-10">Loading deals...</div>;
   }
 
-  if (error || !Array.isArray(deals) || deals.length === 0) {
-    return null; // Or return an empty state component if preferred
+  if (!Array.isArray(deals) || deals.length === 0) {
+    return null;
   }
 
   const featuredDeal = deals[0];
@@ -75,6 +77,7 @@ function SpecialDeals() {
                 <img
                   src={featuredDeal.image}
                   alt={featuredDeal.destination || featuredDeal.title}
+                  referrerPolicy="no-referrer"
                 />
                 <span className="featured-discount">
                   {featuredDeal.discount}
@@ -97,9 +100,9 @@ function SpecialDeals() {
                   <div className="featured-bottom">
                     <div className="featured-price">
                       <span>{t("specialDeals.from")}</span>
-                      <strong>{featuredDeal.price}</strong>
+                      <strong>${featuredDeal.price}</strong>
                       <small>{t("specialDeals.perPerson")}</small>
-                      <del>{featuredDeal.oldPrice}</del>
+                      <del>${featuredDeal.oldPrice}</del>
                     </div>
 
                     <button
@@ -124,7 +127,11 @@ function SpecialDeals() {
                 key={deal._id || deal.id || deal.title}
               >
                 <div className="secondary-image">
-                  <img src={deal.image} alt={deal.destination || deal.title} />
+                  <img
+                    src={deal.image}
+                    alt={deal.destination || deal.title}
+                    referrerPolicy="no-referrer"
+                  />
                   <span className="secondary-discount">{deal.discount}</span>
                 </div>
 
@@ -148,8 +155,8 @@ function SpecialDeals() {
 
                   <div className="secondary-bottom">
                     <div className="secondary-price">
-                      <del>{deal.oldPrice}</del>
-                      <strong>{deal.price}</strong>
+                      <del>${deal.oldPrice}</del>
+                      <strong>${deal.price}</strong>
                       <small>{t("specialDeals.perPerson")}</small>
                     </div>
 

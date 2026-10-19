@@ -302,3 +302,75 @@
     height: 205px;
   }
 }
+
+.destination-favorite {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 12px;
+}
+
+.destination-rating {
+  position: absolute;
+  bottom: 12px;
+  inset-inline-start: 12px;
+}
+
+.destination-price {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+[dir="rtl"] .destination-price {
+  align-items: flex-start;
+}
+
+/* =========================================
+   FAVORITE & RATING (RTL Support Included)
+========================================= */
+
+.destination-favorite {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 12px; /* بدلاً من right: 12px لدعم RTL */
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: #303934;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.destination-rating {
+  position: absolute;
+  bottom: 12px;
+  inset-inline-start: 12px; /* بدلاً من left: 12px لدعم RTL */
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #d28b22;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+/* =========================================
+   RTL ALIGNMENT
+========================================= */
+
+[dir="rtl"] .destination-price {
+  align-items: flex-start;
+}

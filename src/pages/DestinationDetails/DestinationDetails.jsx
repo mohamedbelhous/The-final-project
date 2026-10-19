@@ -30,6 +30,7 @@ function DestinationDetails() {
   const [activeTab, setActiveTab] = useState("Overview");
   const [isFavorite, setIsFavorite] = useState(false);
   const [favHotels, setFavHotels] = useState([]);
+
   useEffect(() => {
     if (!id) {
       setError("No destination ID provided.");
@@ -41,16 +42,34 @@ function DestinationDetails() {
     setIsFavorite(false);
     setFavHotels([]);
 
-    API.get(`/destinations/${id}`)
+    const cleanParam = decodeURIComponent(id).trim();
+
+    API.get(`/destinations/${cleanParam}`)
       .then((res) => {
-        const destData = res.data.data || res.data;
+        const destData = res.data?.data || res.data;
+
+        if (!destData || Object.keys(destData).length === 0) {
+          setError("Destination not found.");
+          setLoading(false);
+          return;
+        }
+
         setDetails(destData);
-        setCurrentHeroImage(destData.heroImage || destData.image || "");
+
+        // Unsplash image first, old local image as fallback
+        const heroImage =
+          destData.heroImage || destData.imageUrl || destData.image || "";
+
+        setCurrentHeroImage(heroImage);
+
         setLoading(false);
       })
       .catch((err) => {
         console.error("Error fetching destination details:", err);
-        setError("Destination not found or server error.");
+        setError(
+          err.response?.data?.message ||
+            "Destination not found or server error.",
+        );
         setLoading(false);
       });
   }, [id]);
@@ -98,7 +117,11 @@ function DestinationDetails() {
 
   const handlePlanTrip = () => {
     navigate("/booking", {
-      state: { destinationId: id, destinationName: details?.name },
+      state: {
+        destinationId: id,
+        destinationName: details?.name || details?.title,
+        destination: details,
+      },
     });
   };
 
@@ -196,7 +219,11 @@ function DestinationDetails() {
                   onClick={() => setCurrentHeroImage(img)}
                   style={{ cursor: "pointer" }}
                 >
-                  <img src={img} alt={`Gallery ${idx}`} />
+                  <img
+                    src={img}
+                    alt={`Gallery ${idx}`}
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
               ))}
             </div>
@@ -242,7 +269,11 @@ function DestinationDetails() {
                       </ul>
                     </div>
                     <div className="why-visit-image">
-                      <img src={currentHeroImage} alt={details.name} />
+                      <img
+                        src={currentHeroImage}
+                        alt={details.name}
+                        referrerPolicy="no-referrer"
+                      />
                     </div>
                   </div>
                 )}
@@ -254,12 +285,45 @@ function DestinationDetails() {
               <h2 className="section-heading">Things to Do</h2>
               {activitiesList.length > 0 ? (
                 <div className="activities-grid">
-                  {activitiesList.map((act, idx) => (
-                    <div key={idx} className="activity-card">
-                      <Compass size={18} />
-                      <span>{typeof act === "string" ? act : act.title}</span>
-                    </div>
-                  ))}
+                  {activitiesList.map((act, idx) => {
+                    const activityTitle =
+                      typeof act === "string" ? act : act.title;
+
+                    const activityImage =
+                      typeof act === "object" ? act.image : null;
+
+                    return (
+                      <div key={idx} className="activity-card">
+                        {activityImage ? (
+                          <div className="activity-img-wrapper">
+                            <img
+                              src={activityImage}
+                              alt={activityTitle}
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
+                        ) : (
+                          <div className="activity-icon-wrapper">
+                            <Compass size={20} />
+                          </div>
+                        )}
+
+                        <div className="activity-details">
+                          <h4>{activityTitle}</h4>
+
+                          {typeof act === "object" && act.duration && (
+                            <span className="activity-duration">
+                              {act.duration}
+                            </span>
+                          )}
+
+                          {typeof act === "object" && act.price && (
+                            <span className="activity-price">{act.price}</span>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               ) : (
                 <p className="no-data-msg">
@@ -277,7 +341,11 @@ function DestinationDetails() {
                     <div key={idx} className="attraction-card">
                       {attraction.image && (
                         <div className="attraction-img-wrapper">
-                          <img src={attraction.image} alt={attraction.title} />
+                          <img
+                            src={attraction.image}
+                            alt={attraction.title}
+                            referrerPolicy="no-referrer"
+                          />
                         </div>
                       )}
                       <div className="attraction-details">
@@ -300,7 +368,11 @@ function DestinationDetails() {
                   {hotelsList.map((hotel, idx) => (
                     <div key={idx} className="hotel-card">
                       <div className="hotel-img-wrapper">
-                        <img src={hotel.image || hotel.img} alt={hotel.name} />
+                        <img
+                          src={hotel.image || hotel.img}
+                          alt={hotel.name}
+                          referrerPolicy="no-referrer"
+                        />
                         <button
                           className={`hotel-fav-btn ${
                             favHotels.includes(idx) ? "active-hotel-fav" : ""

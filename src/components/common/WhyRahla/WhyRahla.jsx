@@ -1,10 +1,12 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { benefits } from "../../../data/benefits";
 import "./WhyRahla.css";
 
 function WhyRahla() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <section className="why-rahla">
@@ -23,7 +25,10 @@ function WhyRahla() {
 
           <p>{t("whyRahla.description")}</p>
 
-          <button className="why-rahla-button">
+          <button
+            className="why-rahla-button"
+            onClick={() => navigate("/destinations")}
+          >
             <span>{t("whyRahla.button")}</span>
             <ArrowRight size={16} strokeWidth={2} />
           </button>

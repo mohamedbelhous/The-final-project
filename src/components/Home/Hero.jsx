@@ -18,13 +18,11 @@ function Hero() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  // 1. حالات تخزين قيم البحث
   const [destination, setDestination] = useState("");
   const [dates, setDates] = useState("");
   const [travelers, setTravelers] = useState("");
   const [budget, setBudget] = useState("");
 
-  // 2. دالة تنفيذ البحث والتوجيه
   const handleSearch = (e) => {
     e.preventDefault();
     const queryParams = new URLSearchParams();
@@ -84,7 +82,7 @@ function Hero() {
           </div>
 
           <div className="search-fields">
-            {/* الوجهة */}
+            {/* Destination */}
             <div className="search-field">
               <div className="search-field-icon">
                 <MapPin size={22} strokeWidth={1.8} />
@@ -103,7 +101,7 @@ function Hero() {
               </div>
             </div>
 
-            {/* التواريخ */}
+            {/* Dates */}
             <div className="search-field">
               <div className="search-field-icon">
                 <CalendarDays size={22} strokeWidth={1.8} />
@@ -113,16 +111,15 @@ function Hero() {
                   {t("hero.datesLabel")}
                 </span>
                 <input
-                  type="text"
+                  type="date"
                   className="search-field-input"
-                  placeholder={t("hero.datesValue")}
                   value={dates}
                   onChange={(e) => setDates(e.target.value)}
                 />
               </div>
             </div>
 
-            {/* عدد المسافرين */}
+            {/* Travelers */}
             <div className="search-field">
               <div className="search-field-icon">
                 <UsersRound size={22} strokeWidth={1.8} />
@@ -132,7 +129,8 @@ function Hero() {
                   {t("hero.travelersLabel")}
                 </span>
                 <input
-                  type="text"
+                  type="number"
+                  min="1"
                   className="search-field-input"
                   placeholder={t("hero.travelersValue")}
                   value={travelers}
@@ -141,7 +139,7 @@ function Hero() {
               </div>
             </div>
 
-            {/* الميزانية */}
+            {/* Budget */}
             <div className="search-field">
               <div className="search-field-icon">
                 <WalletCards size={22} strokeWidth={1.8} />
@@ -151,7 +149,7 @@ function Hero() {
                   {t("hero.budgetLabel")}
                 </span>
                 <input
-                  type="text"
+                  type="number"
                   className="search-field-input"
                   placeholder={t("hero.budgetValue")}
                   value={budget}

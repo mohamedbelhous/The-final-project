@@ -1,4 +1,5 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useLocation, Outlet } from "react-router-dom";
+import { useEffect } from "react";
 
 // Layouts
 import MainLayout from "../layouts/MainLayout";
@@ -12,7 +13,6 @@ import Destinations from "../pages/Destinations/Destinations";
 import DestinationDetails from "../pages/DestinationDetails/DestinationDetails";
 import Booking from "../pages/Booking/Booking";
 import MyTrips from "../pages/MyTrips/MyTrips";
-import Recommendations from "../pages/Recommendations/Recommendations";
 import Profile from "../pages/Profile/Profile";
 import Activities from "../pages/Activities/Activities";
 import TravelGuide from "../pages/TravelGuide/TravelGuide";
@@ -20,14 +20,28 @@ import Deals from "../pages/Deals/Deals";
 import DealDetails from "../pages/DealDetails/DealDetails";
 import About from "../pages/About/About";
 
+import AdminDashboard from "../pages/AdminDashboard/AdminDashboard";
+
 // Auth Pages
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
+import TravelGuideDetails from "../pages/TravelGuideDetails/TravelGuideDetails";
+
+// Helper Component to reset scroll position on path change
+const ScrollToTopLayout = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return <MainLayout />;
+};
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <ScrollToTopLayout />,
     errorElement: (
       <div style={{ textAlign: "center", padding: "60px 20px" }}>
         <h2>Oops! Something went wrong.</h2>
@@ -78,10 +92,6 @@ export const router = createBrowserRouter([
         path: "about",
         element: <About />,
       },
-      {
-        path: "recommendations",
-        element: <Recommendations />,
-      },
 
       /* Authentication Routes */
       {
@@ -91,6 +101,10 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "guide/:id",
+        element: <TravelGuideDetails />,
       },
 
       /* Protected Routes */
@@ -119,5 +133,14 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+
+  {
+    path: "/admin",
+    element: (
+      <ProtectedRoute adminOnly={true}>
+        <AdminDashboard />
+      </ProtectedRoute>
+    ),
   },
 ]);

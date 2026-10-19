@@ -9,7 +9,7 @@ export const destinations = [
     name: "Jijel",
     slug: "jijel",
     region: "East Algeria",
-    category: "Coast",
+    category: "Beaches",
     description:
       "Crystal-clear waters, dramatic cliffs and peaceful Mediterranean beaches.",
     image: jijelImage,
@@ -20,7 +20,7 @@ export const destinations = [
     name: "Oran",
     slug: "oran",
     region: "West Algeria",
-    category: "City",
+    category: "City Life",
     description:
       "A lively Mediterranean city filled with culture, music, architecture and sea views.",
     image: oranImage,
@@ -31,7 +31,7 @@ export const destinations = [
     name: "Timgad",
     slug: "timgad",
     region: "Batna",
-    category: "History",
+    category: "History & Culture",
     description:
       "Walk through one of Algeria's most impressive Roman archaeological sites.",
     image: timgadImage,
@@ -53,7 +53,7 @@ export const destinations = [
     name: "Algiers",
     slug: "algiers",
     region: "Central Algeria",
-    category: "City",
+    category: "City Life",
     description:
       "Explore the White City, its historic Casbah and beautiful Mediterranean coastline.",
     image: oranImage,
@@ -64,7 +64,7 @@ export const destinations = [
     name: "Ghardaïa",
     slug: "ghardaia",
     region: "M'zab Valley",
-    category: "Desert",
+    category: "History & Culture",
     description:
       "Experience unique architecture, ancient traditions and the beauty of the Sahara.",
     image: timgadImage,
@@ -75,7 +75,7 @@ export const destinations = [
     name: "Béjaïa",
     slug: "bejaia",
     region: "Kabylie",
-    category: "Coast",
+    category: "Beaches",
     description:
       "A beautiful meeting point between mountains, forests and the Mediterranean Sea.",
     image: jijelImage,
@@ -86,7 +86,7 @@ export const destinations = [
     name: "Tlemcen",
     slug: "tlemcen",
     region: "West Algeria",
-    category: "History",
+    category: "History & Culture",
     description:
       "Discover Andalusian heritage, historic monuments and beautiful mountain scenery.",
     image: tarfImage,
@@ -94,11 +94,15 @@ export const destinations = [
   },
 ];
 
+// المصفوفة المحدثة لتشمل جميع اهتمامات الصفحة الرئيسية
 export const categories = [
   "All",
-  "Coast",
+  "Beaches",
   "Nature",
-  "History",
-  "Desert",
-  "City",
+  "History & Culture",
+  "Adventure",
+  "Family",
+  "Relaxation",
+  "City Life",
+  "Food & Cuisine",
 ];

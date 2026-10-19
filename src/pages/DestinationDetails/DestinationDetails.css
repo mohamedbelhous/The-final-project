@@ -903,3 +903,77 @@
 .hotel-fav-btn.active-hotel-fav {
   background: #ffffff;
 }
+
+/* =========================================
+   Activity Cards
+========================================= */
+
+.activity-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e8ece9;
+  border-radius: 16px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.activity-img-wrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.activity-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.activity-card:hover .activity-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.activity-icon-wrapper {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f6f3;
+  color: #176b50;
+}
+
+.activity-details {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 16px;
+}
+
+.activity-details h4 {
+  margin: 0;
+  color: #151b24;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.activity-duration {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.activity-price {
+  color: #176b50;
+  font-size: 14px;
+  font-weight: 700;
+}

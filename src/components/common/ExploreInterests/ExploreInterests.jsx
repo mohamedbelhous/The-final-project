@@ -1,10 +1,17 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { interests } from "../../../data/interests";
 import "./ExploreInterests.css";
 
 function ExploreInterests() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleInterestClick = (category) => {
+    // التوجيه إلى صفحة الوجهات مع تمرير التصنيف في الرابط
+    navigate(`/destinations?category=${encodeURIComponent(category)}`);
+  };
 
   return (
     <section className="explore-interests">
@@ -15,7 +22,10 @@ function ExploreInterests() {
             <span className="section-title-line" />
           </div>
 
-          <button className="explore-view-all">
+          <button
+            className="explore-view-all"
+            onClick={() => navigate("/destinations")}
+          >
             <span>{t("exploreInterests.viewAll")}</span>
             <ArrowRight size={16} strokeWidth={2} />
           </button>
@@ -28,6 +38,9 @@ function ExploreInterests() {
               <button
                 key={interest.title}
                 className={`interest-card ${interest.className}`}
+                onClick={() =>
+                  handleInterestClick(interest.category || interest.title)
+                }
               >
                 <span className="interest-icon">
                   <Icon size={25} strokeWidth={1.8} />
