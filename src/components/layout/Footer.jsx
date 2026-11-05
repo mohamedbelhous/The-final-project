@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Map, Mail, ArrowRight } from "lucide-react";
 import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok } from "react-icons/fa";
@@ -5,7 +6,41 @@ import { Link } from "react-router-dom";
 import "./Footer.css";
 
 function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (event) => {
+    event.preventDefault();
+
+    try {
+      const stored = JSON.parse(
+        localStorage.getItem("rahla_newsletter") || "[]",
+      );
+      const subscribers = Array.isArray(stored) ? stored : [];
+
+      if (
+        !subscribers.some(
+          (item) => item.toLowerCase() === email.trim().toLowerCase(),
+        )
+      ) {
+        subscribers.push(email.trim());
+        localStorage.setItem(
+          "rahla_newsletter",
+          JSON.stringify(subscribers),
+        );
+      }
+    } catch (error) {
+      console.warn("Could not save newsletter subscription.", error);
+    }
+
+    setSubscribed(true);
+    setEmail("");
+  };
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language.startsWith("ar") ? "en" : "ar");
+  };
 
   return (
     <footer className="footer">
@@ -22,21 +57,27 @@ function Footer() {
             </div>
           </div>
 
-          <form
-            className="footer-newsletter-form"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="email"
-              placeholder={t("footer.emailPlaceholder")}
-              aria-label="Email address"
-            />
+          {subscribed ? (
+            <p className="footer-newsletter-success" role="status">
+              {t("footer.subscribeSuccess")}
+            </p>
+          ) : (
+            <form className="footer-newsletter-form" onSubmit={handleSubscribe}>
+              <input
+                type="email"
+                placeholder={t("footer.emailPlaceholder")}
+                aria-label="Email address"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+              />
 
-            <button type="submit">
-              <span>{t("footer.subscribeBtn")}</span>
-              <ArrowRight size={16} />
-            </button>
-          </form>
+              <button type="submit">
+                <span>{t("footer.subscribeBtn")}</span>
+                <ArrowRight size={16} />
+              </button>
+            </form>
+          )}
         </section>
 
         <div className="footer-main">
@@ -55,16 +96,36 @@ function Footer() {
             </p>
 
             <div className="footer-socials">
-              <a href="#" aria-label="Instagram">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+              >
                 <FaInstagram size={16} />
               </a>
-              <a href="#" aria-label="Facebook">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+              >
                 <FaFacebookF size={16} />
               </a>
-              <a href="#" aria-label="YouTube">
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube"
+              >
                 <FaYoutube size={16} />
               </a>
-              <a href="#" aria-label="TikTok">
+              <a
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="TikTok"
+              >
                 <FaTiktok size={16} />
               </a>
             </div>
@@ -73,25 +134,22 @@ function Footer() {
           <div className="footer-column">
             <h3>{t("footer.colCompany")}</h3>
             <Link to="/about">{t("footer.aboutUs")}</Link>
-            <Link to="/careers">{t("footer.careers")}</Link>
-            <Link to="/press">{t("footer.press")}</Link>
-            <Link to="/contact">{t("footer.contactUs")}</Link>
+            <Link to="/destinations">{t("footer.destinations")}</Link>
+            <Link to="/activities">{t("footer.activities")}</Link>
           </div>
 
           <div className="footer-column">
             <h3>{t("footer.colSupport")}</h3>
-            <Link to="/help">{t("footer.helpCenter")}</Link>
-            <Link to="/faq">{t("footer.faqs")}</Link>
-            <Link to="/terms">{t("footer.terms")}</Link>
-            <Link to="/privacy">{t("footer.privacy")}</Link>
+            <a href="mailto:hello@rahla.dz">{t("footer.contactUs")}</a>
+            <Link to="/trips">My Trips</Link>
+            <Link to="/favorites">{t("nav.favorites")}</Link>
           </div>
 
           <div className="footer-column">
             <h3>{t("footer.colResources")}</h3>
             <Link to="/travel-guide">{t("footer.travelGuide")}</Link>
-            <Link to="/blog">{t("footer.blog")}</Link>
+            <Link to="/deals">{t("nav.deals")}</Link>
             <Link to="/destinations">{t("footer.destinations")}</Link>
-            <Link to="/activities">{t("footer.activities")}</Link>
           </div>
         </div>
 
@@ -99,8 +157,9 @@ function Footer() {
           <p>{t("footer.copyright")}</p>
 
           <div className="footer-bottom-links">
-            <button type="button">English</button>
-            <button type="button">DZD</button>
+            <button type="button" onClick={toggleLanguage}>
+              {i18n.language.startsWith("ar") ? "العربية" : "English"}
+            </button>
           </div>
         </div>
       </div>

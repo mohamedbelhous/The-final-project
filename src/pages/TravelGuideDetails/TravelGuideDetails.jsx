@@ -1,93 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams, Navigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Clock, ArrowLeft, Compass } from "lucide-react";
-import API from "../../services/api";
+import { useContent } from "../../context/ContentContext";
 import "./TravelGuideDetails.css";
 
 function TravelGuideDetails() {
   const { id } = useParams();
+  const { publishedGuides } = useContent();
 
-  const [article, setArticle] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const value = String(id || "").toLowerCase();
+  const article =
+    publishedGuides.find(
+      (guide) =>
+        String(guide.slug).toLowerCase() === value ||
+        String(guide.id) === value ||
+        String(guide._id) === value,
+    ) || null;
 
-  useEffect(() => {
-    let cancelled = false;
-
-    const fetchArticle = async () => {
-      try {
-        setLoading(true);
-        setError(false);
-
-        const response = await API.get(`/guides/${encodeURIComponent(id)}`);
-
-        const result = response.data;
-
-        if (!cancelled) {
-          if (result.success && result.data) {
-            setArticle(result.data);
-          } else {
-            setError(true);
-          }
-        }
-      } catch (err) {
-        console.error("Failed to load travel guide:", err);
-
-        if (!cancelled) {
-          setError(true);
-        }
-      } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchArticle();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [id]);
-
-  if (loading) {
+  if (!article) {
     return (
       <main className="travel-guide-details">
-        {" "}
         <div className="guide-details-container">
-          {" "}
-          <p>Loading article...</p>{" "}
-        </div>{" "}
-      </main>
-    );
-  }
-
-  if (error || !article) {
-    return (
-      <main className="travel-guide-details">
-        {" "}
-        <div className="guide-details-container">
-          {" "}
-          <h2>Article not found</h2>{" "}
-          <p>This article may not be published or is no longer available. </p>{" "}
+          <h2>Article not found</h2>
+          <p>This article may not be published or is no longer available.</p>
           <Link to="/travel-guide" className="guide-back-link">
-            {" "}
-            <ArrowLeft size={18} /> <span>Back to Travel Guides</span>{" "}
-          </Link>{" "}
-        </div>{" "}
+            <ArrowLeft size={18} /> <span>Back to Travel Guides</span>
+          </Link>
+        </div>
       </main>
     );
   }
+
+  const publishedDate = article.publishedAt
+    ? new Date(article.publishedAt)
+    : null;
+  const hasValidDate =
+    publishedDate && !Number.isNaN(publishedDate.getTime());
 
   return (
     <main className="travel-guide-details">
-      {" "}
       <div className="guide-details-container">
-        {" "}
         <Link to="/travel-guide" className="guide-back-link">
-          {" "}
-          <ArrowLeft size={18} /> <span>Back to Travel Guides</span>{" "}
+          <ArrowLeft size={18} /> <span>Back to Travel Guides</span>
         </Link>
+
         <header className="guide-details-header">
           <span className="guide-details-category">
             <Compass size={15} />
@@ -106,9 +61,9 @@ function TravelGuideDetails() {
               </span>
             )}
 
-            {article.publishedAt && (
+            {hasValidDate && (
               <span>
-                {new Date(article.publishedAt).toLocaleDateString("en-GB", {
+                {publishedDate.toLocaleDateString("en-GB", {
                   day: "numeric",
                   month: "long",
                   year: "numeric",
@@ -117,11 +72,13 @@ function TravelGuideDetails() {
             )}
           </div>
         </header>
+
         {article.image && (
           <div className="guide-details-cover">
             <img src={article.image} alt={article.title} />
           </div>
         )}
+
         <article className="guide-details-content">
           {Array.isArray(article.content) && article.content.length > 0 ? (
             <div className="guide-article-text">
@@ -155,6 +112,7 @@ function TravelGuideDetails() {
             </p>
           )}
         </article>
+
         <div className="guide-details-footer">
           <Link to="/travel-guide" className="guide-back-button">
             <ArrowLeft size={17} />

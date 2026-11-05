@@ -84,6 +84,7 @@ const resources = {
         newsletterSubtitle: "Subscribe to our newsletter and never miss an update.",
         emailPlaceholder: "Enter your email",
         subscribeBtn: "Subscribe",
+        subscribeSuccess: "Thanks for subscribing! Check your inbox soon.",
         brandDescPart1: "Your smart travel companion",
         brandDescPart2: "in Algeria and beyond.",
         colCompany: "Company",
@@ -170,6 +171,9 @@ const resources = {
         passwordLabel: "Password",
         submitBtn: "Login",
         submittingBtn: "Logging in...",
+        demoTitle: "Demo accounts",
+        demoAdmin: "Admin: admin@rahla.dz / admin123",
+        demoTraveler: "Traveler: traveler@rahla.dz / traveler123",
         footerText: "Don't have an account?",
         footerLink: "Sign up"
       },
@@ -270,6 +274,7 @@ const resources = {
         newsletterSubtitle: "اشترك في نشرتنا الإخبارية ولا تفوت أي تحديث.",
         emailPlaceholder: "أدخل بريدك الإلكتروني",
         subscribeBtn: "اشتراك",
+        subscribeSuccess: "شكراً لاشتراكك! تحقق من بريدك قريباً.",
         brandDescPart1: "رفيقك الذكي للسفر",
         brandDescPart2: "في الجزائر وما بعدها.",
         colCompany: "الشركة",
@@ -356,6 +361,9 @@ const resources = {
         passwordLabel: "كلمة المرور",
         submitBtn: "تسجيل الدخول",
         submittingBtn: "جاري الدخول...",
+        demoTitle: "حسابات تجريبية",
+        demoAdmin: "المدير: admin@rahla.dz / admin123",
+        demoTraveler: "المسافر: traveler@rahla.dz / traveler123",
         footerText: "ليس لديك حساب؟",
         footerLink: "إنشاء حساب"
       },
@@ -377,6 +385,12 @@ const resources = {
   }
 };
 
+const syncDocumentLanguage = (lng) => {
+  const language = String(lng || "en").slice(0, 2);
+  document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+  document.documentElement.lang = language;
+};
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -386,9 +400,8 @@ i18n
     interpolation: { escapeValue: false }
   });
 
-i18n.on('languageChanged', (lng) => {
-  document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr';
-  document.documentElement.lang = lng;
-});
+// Apply direction on first load too, not only after a language change.
+syncDocumentLanguage(i18n.language);
+i18n.on('languageChanged', syncDocumentLanguage);
 
 export default i18n;

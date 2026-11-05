@@ -22,10 +22,17 @@ function Deals() {
   const [activeCategory, setActiveCategory] = useState("All Deals");
   const [copiedCode, setCopiedCode] = useState("");
 
-  const handleCopyCode = (e, code) => {
+  const handleCopyCode = async (e, code) => {
     e.preventDefault();
     e.stopPropagation();
-    navigator.clipboard.writeText(code);
+
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch {
+      // Clipboard access can be blocked; let the user copy manually.
+      window.prompt("Copy this promo code:", code);
+    }
+
     setCopiedCode(code);
     setTimeout(() => setCopiedCode(""), 2500);
   };

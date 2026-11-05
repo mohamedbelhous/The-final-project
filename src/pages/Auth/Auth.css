@@ -119,6 +119,25 @@
   cursor: not-allowed;
 }
 
+.auth-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 20px;
+  padding: 12px 14px;
+  border: 1px dashed #cfe0d8;
+  border-radius: 10px;
+  background: #f6faf8;
+  color: #61706a;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.auth-demo strong {
+  color: #176b50;
+  font-size: 0.8rem;
+}
+
 .auth-footer {
   margin-top: 24px;
   text-align: center;

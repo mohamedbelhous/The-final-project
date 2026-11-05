@@ -1,50 +1,21 @@
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Clock3, MapPin, Percent } from "lucide-react";
-import API from "../../../services/api";
-import { deals as fallbackDeals } from "../../../data/deals";
+import { dealsList, featuredFlashDeal } from "../../../data/dealsData";
 import "./SpecialDeals.css";
 
 function SpecialDeals() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [deals, setDeals] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    API.get("/deals")
-      .then((res) => {
-        const dealsData = Array.isArray(res.data)
-          ? res.data
-          : Array.isArray(res.data?.data)
-            ? res.data.data
-            : [];
+  const deals = [featuredFlashDeal, ...dealsList];
 
-        if (dealsData.length > 0) {
-          setDeals(dealsData);
-        } else {
-          setDeals(fallbackDeals || []);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching deals, using fallback:", err);
-        setDeals(fallbackDeals || []);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return <div className="text-center py-10">Loading deals...</div>;
-  }
-
-  if (!Array.isArray(deals) || deals.length === 0) {
+  if (deals.length === 0) {
     return null;
   }
 
   const featuredDeal = deals[0];
-  const secondaryDeals = deals.slice(1);
+  const secondaryDeals = deals.slice(1, 4);
 
   return (
     <section className="special-deals">
@@ -76,22 +47,24 @@ function SpecialDeals() {
               <div className="featured-image">
                 <img
                   src={featuredDeal.image}
-                  alt={featuredDeal.destination || featuredDeal.title}
+                  alt={featuredDeal.title}
                   referrerPolicy="no-referrer"
                 />
                 <span className="featured-discount">
-                  {featuredDeal.discount}
+                  {featuredDeal.discountPercentage}
                 </span>
                 <span className="featured-duration">
                   <Clock3 size={13} />
-                  {featuredDeal.duration}
+                  {featuredDeal.expiresIn ||
+                    featuredDeal.validTill ||
+                    "Limited time"}
                 </span>
                 <div className="featured-overlay" />
 
                 <div className="featured-content">
                   <div className="featured-location">
                     <MapPin size={13} />
-                    <span>{featuredDeal.destination}</span>
+                    <span>{featuredDeal.location}</span>
                   </div>
 
                   <h3>{featuredDeal.title}</h3>
@@ -100,16 +73,14 @@ function SpecialDeals() {
                   <div className="featured-bottom">
                     <div className="featured-price">
                       <span>{t("specialDeals.from")}</span>
-                      <strong>${featuredDeal.price}</strong>
+                      <strong>${featuredDeal.discountedPrice}</strong>
                       <small>{t("specialDeals.perPerson")}</small>
-                      <del>${featuredDeal.oldPrice}</del>
+                      <del>${featuredDeal.originalPrice}</del>
                     </div>
 
                     <button
                       className="featured-button"
-                      onClick={() =>
-                        navigate(`/deal/${featuredDeal._id || featuredDeal.id}`)
-                      }
+                      onClick={() => navigate(`/deal/${featuredDeal.id}`)}
                     >
                       <span>{t("specialDeals.exploreBtn")}</span>
                       <ArrowRight size={16} />
@@ -122,17 +93,16 @@ function SpecialDeals() {
 
           <div className="secondary-deals">
             {secondaryDeals.map((deal) => (
-              <article
-                className="secondary-deal"
-                key={deal._id || deal.id || deal.title}
-              >
+              <article className="secondary-deal" key={deal.id}>
                 <div className="secondary-image">
                   <img
                     src={deal.image}
-                    alt={deal.destination || deal.title}
+                    alt={deal.title}
                     referrerPolicy="no-referrer"
                   />
-                  <span className="secondary-discount">{deal.discount}</span>
+                  <span className="secondary-discount">
+                    {deal.discountPercentage}
+                  </span>
                 </div>
 
                 <div className="secondary-content">
@@ -140,14 +110,14 @@ function SpecialDeals() {
                     <div>
                       <span className="secondary-location">
                         <MapPin size={12} />
-                        {deal.destination}
+                        {deal.location}
                       </span>
                       <h3>{deal.title}</h3>
                     </div>
 
                     <span className="secondary-duration">
                       <Clock3 size={12} />
-                      {deal.duration}
+                      {deal.validTill || "Limited time"}
                     </span>
                   </div>
 
@@ -155,15 +125,15 @@ function SpecialDeals() {
 
                   <div className="secondary-bottom">
                     <div className="secondary-price">
-                      <del>${deal.oldPrice}</del>
-                      <strong>${deal.price}</strong>
+                      <del>${deal.originalPrice}</del>
+                      <strong>${deal.discountedPrice}</strong>
                       <small>{t("specialDeals.perPerson")}</small>
                     </div>
 
                     <button
                       className="secondary-button"
                       aria-label={`Explore ${deal.title}`}
-                      onClick={() => navigate(`/deal/${deal._id || deal.id}`)}
+                      onClick={() => navigate(`/deal/${deal.id}`)}
                     >
                       <ArrowRight size={16} />
                     </button>

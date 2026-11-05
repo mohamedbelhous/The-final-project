@@ -1,54 +1,136 @@
-import { createContext, useState, useEffect } from "react";
-import API from "../services/api";
+import { createContext, useState } from "react";
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+const USERS_KEY = "rahla_users";
+const SESSION_KEY = "user";
 
-  // Load user data on application start
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
-  }, []);
+// The project ships without a backend, so accounts are stored locally.
+// This keeps registration, login, and the admin area usable in the demo.
+const DEMO_USERS = [
+  {
+    id: "demo-admin",
+    name: "Rahla Admin",
+    email: "admin@rahla.dz",
+    password: "admin123",
+    role: "admin",
+  },
+  {
+    id: "demo-traveler",
+    name: "Demo Traveler",
+    email: "traveler@rahla.dz",
+    password: "traveler123",
+    role: "Traveler",
+  },
+];
+
+const readJson = (key, fallback) => {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch (error) {
+    console.warn(`Could not read ${key} from storage.`, error);
+    return fallback;
+  }
+};
+
+const loadUsers = () => {
+  const stored = readJson(USERS_KEY, []);
+  const users = Array.isArray(stored) ? stored : [];
+
+  return [
+    ...DEMO_USERS.filter(
+      (demo) =>
+        !users.some(
+          (user) => user.email?.toLowerCase() === demo.email.toLowerCase(),
+        ),
+    ),
+    ...users,
+  ];
+};
+
+const saveUsers = (users) => {
+  try {
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  } catch (error) {
+    console.warn("Could not save users.", error);
+  }
+};
+
+const createId = () =>
+  typeof crypto !== "undefined" && crypto.randomUUID
+    ? crypto.randomUUID()
+    : `user-${Date.now()}`;
+
+const normalizeEmail = (email) => String(email || "").trim().toLowerCase();
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(() => {
+    const stored = readJson(SESSION_KEY, null);
+    return stored && stored.email ? stored : null;
+  });
+
+  const persistSession = (userData) => {
+    localStorage.setItem(SESSION_KEY, JSON.stringify(userData));
+    setUser(userData);
+  };
 
   // Login handler
-  const login = async (credentials) => {
-    const response = await API.post("/auth/login", credentials);
-    const { token, ...userData } = response.data;
+  const login = async ({ email, password }) => {
+    const users = loadUsers();
+    const account = users.find(
+      (item) =>
+        normalizeEmail(item.email) === normalizeEmail(email) &&
+        item.password === password,
+    );
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(userData));
-    setUser(userData);
+    if (!account) {
+      throw new Error("Incorrect email or password. Please try again.");
+    }
 
-    return response.data;
+    const { password: _password, ...userData } = account;
+    saveUsers(users);
+    persistSession(userData);
+
+    return userData;
   };
 
   // Register handler
-  const register = async (userData) => {
-    const response = await API.post("/auth/register", userData);
-    const { token, ...newUserData } = response.data;
+  const register = async ({ name, email, password }) => {
+    const users = loadUsers();
+    const cleanEmail = normalizeEmail(email);
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(newUserData));
-    setUser(newUserData);
+    if (users.some((item) => normalizeEmail(item.email) === cleanEmail)) {
+      throw new Error(
+        "An account with this email already exists. Please sign in instead.",
+      );
+    }
 
-    return response.data;
+    const account = {
+      id: createId(),
+      name: String(name).trim(),
+      email: cleanEmail,
+      password,
+      role: "Traveler",
+    };
+
+    saveUsers([account, ...users]);
+
+    const { password: _password, ...userData } = account;
+    persistSession(userData);
+
+    return userData;
   };
 
   // Logout handler
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.removeItem(SESSION_KEY);
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading: false }}>
       {children}
     </AuthContext.Provider>
   );

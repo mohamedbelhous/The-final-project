@@ -1,7 +1,7 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Pagination, Stack, CircularProgress } from "@mui/material";
+import { Pagination, Stack } from "@mui/material";
 import {
   Search,
   MapPin,
@@ -12,9 +12,13 @@ import {
   RotateCcw,
 } from "lucide-react";
 
-import API from "../../services/api";
 import { categories } from "../../data/destinations";
+import { useContent } from "../../context/ContentContext";
+import { useFavorites } from "../../context/FavoritesContext";
 import "./Destinations.css";
+
+const MAX_BUDGET = 200;
+const ITEMS_PER_PAGE = 8;
 
 const categoryMap = {
   beaches: ["beach", "beaches", "coastal", "sea"],
@@ -35,63 +39,51 @@ const categoryMap = {
 
 function Destinations() {
   const { t } = useTranslation();
+  const { destinations } = useContent();
+  const { isFavorite, toggleFavorite } = useFavorites();
+
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const categoryFromUrl = searchParams.get("category") || "All";
-
-  const [destinations, setDestinations] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const [activeCategory, setActiveCategory] = useState(categoryFromUrl);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedRegion, setSelectedRegion] = useState("All");
-  const [maxPrice, setMaxPrice] = useState(1000);
-  const [favorites, setFavorites] = useState([]);
-  const [showFilters, setShowFilters] = useState(false);
-
+  const [showFilters, setShowFilters] = useState(() =>
+    ["category", "region", "budget"].some((key) => searchParams.get(key)),
+  );
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const resultsRef = useRef(null);
 
-  useEffect(() => {
-    setLoading(true);
-    API.get("/destinations")
-      .then((res) => {
-        const data = res.data?.data || res.data || [];
-        setDestinations(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching destinations from API:", err);
-        setLoading(false);
-      });
-  }, []);
+  const activeCategory = searchParams.get("category") || "All";
+  const searchTerm = searchParams.get("search") || "";
+  const selectedRegion = searchParams.get("region") || "All";
+  const requestedBudget = Number(searchParams.get("budget"));
+  const maxPrice =
+    Number.isFinite(requestedBudget) && requestedBudget > 0
+      ? Math.min(requestedBudget, MAX_BUDGET)
+      : MAX_BUDGET;
 
-  useEffect(() => {
-    const category = searchParams.get("category");
-    if (category) {
-      setActiveCategory(category);
-      setShowFilters(true);
-    }
-  }, [searchParams]);
+  const updateFilter = (updates) => {
+    const next = new URLSearchParams(searchParams);
 
-  useEffect(() => {
+    Object.entries(updates).forEach(([key, value]) => {
+      const shouldRemove =
+        value === "" ||
+        value == null ||
+        value === "All" ||
+        (key === "budget" && Number(value) >= MAX_BUDGET);
+
+      if (shouldRemove) {
+        next.delete(key);
+      } else {
+        next.set(key, String(value));
+      }
+    });
+
+    setSearchParams(next, { replace: true });
     setCurrentPage(1);
-  }, [activeCategory, selectedRegion, maxPrice, searchTerm]);
-
-  const handleCategoryChange = (category) => {
-    setActiveCategory(category);
-    if (category === "All") {
-      searchParams.delete("category");
-      setSearchParams(searchParams);
-    } else {
-      setSearchParams({ category });
-    }
   };
 
   const regions = useMemo(() => {
     const list = destinations
-      .map((d) => d.region || d.location)
+      .map((destination) => destination.region || destination.location)
       .filter(Boolean);
+
     return ["All", ...Array.from(new Set(list))];
   }, [destinations]);
 
@@ -119,7 +111,9 @@ function Destinations() {
         selectedRegion === "All" ||
         destRegion.toLowerCase() === selectedRegion.toLowerCase();
 
-      const price = destination.price || destination.pricePerDay || 0;
+      const price = Number(
+        destination.pricePerDay ?? destination.price ?? 0,
+      );
       const matchesPrice = !price || price <= maxPrice;
 
       const search = searchTerm.toLowerCase().trim();
@@ -134,35 +128,36 @@ function Destinations() {
     });
   }, [destinations, activeCategory, selectedRegion, maxPrice, searchTerm]);
 
+  const totalPages = Math.ceil(filteredDestinations.length / ITEMS_PER_PAGE);
+  const safePage = Math.min(currentPage, totalPages || 1);
   const paginatedDestinations = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    return filteredDestinations.slice(startIndex, startIndex + itemsPerPage);
-  }, [filteredDestinations, currentPage, itemsPerPage]);
-
-  const totalPages = Math.ceil(filteredDestinations.length / itemsPerPage);
+    const startIndex = (safePage - 1) * ITEMS_PER_PAGE;
+    return filteredDestinations.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredDestinations, safePage]);
 
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
     window.scrollTo({ top: 400, behavior: "smooth" });
   };
 
-  const toggleFavorite = (e, id) => {
+  const handleCategoryChange = (category) => {
+    updateFilter({ category });
+  };
+
+  const toggleDestinationFavorite = (e, id) => {
     e.stopPropagation();
     e.preventDefault();
-    setFavorites((current) =>
-      current.includes(id)
-        ? current.filter((favoriteId) => favoriteId !== id)
-        : [...current, id],
-    );
+    toggleFavorite("destinations", id);
   };
 
   const resetAllFilters = () => {
-    setSearchTerm("");
-    setActiveCategory("All");
-    setSelectedRegion("All");
-    setMaxPrice(1000);
-    setSearchParams({});
+    setSearchParams({}, { replace: true });
     setCurrentPage(1);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -186,35 +181,38 @@ function Destinations() {
 
           <p>{t("destinationsPage.subtitle")}</p>
 
-          <div className="destinations-search">
+          <form className="destinations-search" onSubmit={handleSearchSubmit}>
             <Search size={20} strokeWidth={1.8} />
 
             <input
               type="text"
               placeholder={t("destinationsPage.searchPlaceholder")}
               value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
+              onChange={(event) =>
+                updateFilter({ search: event.target.value })
+              }
             />
 
             {searchTerm && (
               <button
+                type="button"
                 className="search-clear"
-                onClick={() => setSearchTerm("")}
+                onClick={() => updateFilter({ search: "" })}
                 aria-label="Clear search"
               >
                 <X size={16} />
               </button>
             )}
 
-            <button className="search-submit">
+            <button type="submit" className="search-submit">
               {t("destinationsPage.searchBtn")}
             </button>
-          </div>
+          </form>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="destinations-content">
+      <section className="destinations-content" ref={resultsRef}>
         <div className="destinations-container">
           <div className="destinations-heading">
             <div>
@@ -266,7 +264,7 @@ function Destinations() {
                 </label>
                 <select
                   value={selectedRegion}
-                  onChange={(e) => setSelectedRegion(e.target.value)}
+                  onChange={(e) => updateFilter({ region: e.target.value })}
                   className="filter-select"
                 >
                   {regions.map((reg) => (
@@ -286,11 +284,11 @@ function Destinations() {
                 </div>
                 <input
                   type="range"
-                  min="50"
-                  max="1000"
-                  step="25"
+                  min="20"
+                  max={MAX_BUDGET}
+                  step="5"
                   value={maxPrice}
-                  onChange={(e) => setMaxPrice(Number(e.target.value))}
+                  onChange={(e) => updateFilter({ budget: e.target.value })}
                   className="price-slider-input"
                 />
               </div>
@@ -312,7 +310,7 @@ function Destinations() {
 
             {(activeCategory !== "All" ||
               selectedRegion !== "All" ||
-              maxPrice < 1000 ||
+              maxPrice < MAX_BUDGET ||
               searchTerm) && (
               <button onClick={resetAllFilters}>
                 {t("destinationsPage.clearAllFilters")}
@@ -320,31 +318,19 @@ function Destinations() {
             )}
           </div>
 
-          {/* Loading Indicator */}
-          {loading ? (
-            <div style={{ textAlign: "center", padding: "60px 0" }}>
-              <CircularProgress color="primary" />
-              <p style={{ marginTop: "15px", color: "#666" }}>
-                Loading all destinations...
-              </p>
-            </div>
-          ) : paginatedDestinations.length > 0 ? (
+          {paginatedDestinations.length > 0 ? (
             <>
               <div className="destinations-grid">
                 {paginatedDestinations.map((destination, index) => {
-                  const destId =
-                    destination.slug || destination.id || destination._id;
-
-                  const isFavorite = favorites.includes(destId);
-
+                  const destId = destination.slug || destination.id;
+                  const favorite = isFavorite("destinations", destId);
                   const displayImage =
                     destination.heroImage ||
                     destination.imageUrl ||
                     destination.image ||
                     "";
-
                   const displayPrice =
-                    destination.price || destination.pricePerDay;
+                    destination.pricePerDay || destination.price;
 
                   return (
                     <Link
@@ -372,14 +358,20 @@ function Destinations() {
 
                         <button
                           className={`destination-favorite ${
-                            isFavorite ? "active" : ""
+                            favorite ? "active" : ""
                           }`}
-                          onClick={(e) => toggleFavorite(e, destId)}
-                          aria-label="Toggle Favorite"
+                          onClick={(e) =>
+                            toggleDestinationFavorite(e, destId)
+                          }
+                          aria-label={
+                            favorite
+                              ? `Remove ${destination.name} from favorites`
+                              : `Save ${destination.name} to favorites`
+                          }
                         >
                           <Heart
                             size={17}
-                            fill={isFavorite ? "currentColor" : "none"}
+                            fill={favorite ? "currentColor" : "none"}
                           />
                         </button>
 
@@ -421,11 +413,11 @@ function Destinations() {
                             {t("destinationsPage.exploreDestination")}
                             <ArrowRight size={15} />
                           </span>
-                          {displayPrice && (
+                          {displayPrice ? (
                             <span className="destination-price-tag">
-                              ${displayPrice}
+                              ${displayPrice} / day
                             </span>
-                          )}
+                          ) : null}
                         </div>
                       </div>
                     </Link>
@@ -446,7 +438,7 @@ function Destinations() {
                 >
                   <Pagination
                     count={totalPages}
-                    page={currentPage}
+                    page={safePage}
                     onChange={handlePageChange}
                     color="primary"
                     shape="rounded"

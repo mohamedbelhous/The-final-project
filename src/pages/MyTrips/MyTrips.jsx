@@ -54,10 +54,12 @@ function MyTrips() {
                 </div>
 
                 <div className="trip-card-body">
-                  <h3>{trip.title}</h3>
-                  <p className="trip-location">
-                    <MapPin size={14} /> {trip.location}
-                  </p>
+                  <h3>{trip.title || trip.destinationName || "Trip"}</h3>
+                  {trip.location && (
+                    <p className="trip-location">
+                      <MapPin size={14} /> {trip.location}
+                    </p>
+                  )}
 
                   <div className="trip-details-row">
                     <div>

@@ -1,5 +1,4 @@
-import { createBrowserRouter, useLocation, Outlet } from "react-router-dom";
-import { useEffect } from "react";
+import { createBrowserRouter } from "react-router-dom";
 
 // Layouts
 import MainLayout from "../layouts/MainLayout";
@@ -19,6 +18,8 @@ import TravelGuide from "../pages/TravelGuide/TravelGuide";
 import Deals from "../pages/Deals/Deals";
 import DealDetails from "../pages/DealDetails/DealDetails";
 import About from "../pages/About/About";
+import Favorites from "../pages/Favorites/Favorites";
+import NotFound from "../pages/NotFound/NotFound";
 
 import AdminDashboard from "../pages/AdminDashboard/AdminDashboard";
 
@@ -27,21 +28,10 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import TravelGuideDetails from "../pages/TravelGuideDetails/TravelGuideDetails";
 
-// Helper Component to reset scroll position on path change
-const ScrollToTopLayout = () => {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return <MainLayout />;
-};
-
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <ScrollToTopLayout />,
+    element: <MainLayout />,
     errorElement: (
       <div style={{ textAlign: "center", padding: "60px 20px" }}>
         <h2>Oops! Something went wrong.</h2>
@@ -92,6 +82,10 @@ export const router = createBrowserRouter([
         path: "about",
         element: <About />,
       },
+      {
+        path: "favorites",
+        element: <Favorites />,
+      },
 
       /* Authentication Routes */
       {
@@ -131,6 +125,10 @@ export const router = createBrowserRouter([
             <Profile />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },

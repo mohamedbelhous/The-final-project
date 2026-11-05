@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   Star,
@@ -16,63 +16,31 @@ import {
   Compass,
 } from "lucide-react";
 
-import API from "../../services/api";
+import { getDestinationDetail } from "../../data/destinationsDetails";
+import { useContent } from "../../context/ContentContext";
+import { useFavorites } from "../../context/FavoritesContext";
 import "./DestinationDetails.css";
 
 function DestinationDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { destinations } = useContent();
+  const { isFavorite, toggleFavorite } = useFavorites();
 
-  const [details, setDetails] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [currentHeroImage, setCurrentHeroImage] = useState("");
+  const details = getDestinationDetail(destinations, id);
+
   const [activeTab, setActiveTab] = useState("Overview");
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [imageChoice, setImageChoice] = useState({ id: null, image: "" });
   const [favHotels, setFavHotels] = useState([]);
 
-  useEffect(() => {
-    if (!id) {
-      setError("No destination ID provided.");
-      setLoading(false);
-      return;
-    }
+  const currentHeroImage =
+    imageChoice.id === id && imageChoice.image
+      ? imageChoice.image
+      : details?.heroImage || "";
 
-    setLoading(true);
-    setIsFavorite(false);
-    setFavHotels([]);
-
-    const cleanParam = decodeURIComponent(id).trim();
-
-    API.get(`/destinations/${cleanParam}`)
-      .then((res) => {
-        const destData = res.data?.data || res.data;
-
-        if (!destData || Object.keys(destData).length === 0) {
-          setError("Destination not found.");
-          setLoading(false);
-          return;
-        }
-
-        setDetails(destData);
-
-        // Unsplash image first, old local image as fallback
-        const heroImage =
-          destData.heroImage || destData.imageUrl || destData.image || "";
-
-        setCurrentHeroImage(heroImage);
-
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching destination details:", err);
-        setError(
-          err.response?.data?.message ||
-            "Destination not found or server error.",
-        );
-        setLoading(false);
-      });
-  }, [id]);
+  const savedAsFavorite = details
+    ? isFavorite("destinations", details.slug)
+    : false;
 
   const navTabs = [
     { name: "Overview", id: "sec-overview" },
@@ -99,55 +67,73 @@ function DestinationDetails() {
   };
 
   const openGoogleMaps = () => {
-    const query = encodeURIComponent(details?.name || details?.title || "");
+    const query = encodeURIComponent(
+      details?.name || details?.title || "Algeria",
+    );
     window.open(
       `https://www.google.com/maps/search/?api=1&query=${query}`,
       "_blank",
     );
   };
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({ title: details?.name, url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert("Link copied to clipboard!");
+  const handleShare = async () => {
+    const shareData = {
+      title: details?.name || "Rahla destination",
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(window.location.href);
+        alert("Link copied to clipboard!");
+      } else {
+        alert(window.location.href);
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.warn("Could not share this destination.", error);
+      }
     }
   };
 
   const handlePlanTrip = () => {
+    // Router state must stay serializable: never pass icon components.
     navigate("/booking", {
       state: {
-        destinationId: id,
-        destinationName: details?.name || details?.title,
-        destination: details,
+        destinationId: details.slug || details.id,
+        destinationName: details.name || details.title,
+        destination: {
+          id: details.id,
+          slug: details.slug,
+          name: details.name,
+          title: details.title,
+          region: details.region,
+          location: details.location,
+          pricePerDay: details.pricePerDay,
+          image: details.image,
+          heroImage: details.heroImage,
+        },
       },
     });
   };
 
-  if (loading) {
+  if (!details) {
     return (
-      <div style={{ textAlign: "center", padding: "50px" }}>
-        <h2>Loading destination details...</h2>
+      <div className="dest-not-found">
+        <h2>Destination not found</h2>
+        <p>We couldn't find that destination. It may have been removed.</p>
+        <Link to="/destinations">Back to Destinations</Link>
       </div>
     );
   }
 
-  if (error || !details) {
-    return (
-      <div style={{ textAlign: "center", padding: "50px" }}>
-        <h2>{error || "Destination not found"}</h2>
-        <Link
-          to="/destinations"
-          style={{ color: "#176b50", textDecoration: "underline" }}
-        >
-          Back to Destinations
-        </Link>
-      </div>
-    );
-  }
-
-  const activitiesList = details.activities || details.thingsToDo || [];
+  const activitiesList =
+    details.suggestedActivities ||
+    details.activities ||
+    details.thingsToDo ||
+    [];
   const attractionsList = details.attractions || details.placesToVisit || [];
   const hotelsList =
     details.accommodations || details.hotels || details.stay || [];
@@ -193,16 +179,18 @@ function DestinationDetails() {
                   {details.ratingText || "Excellent"}
                 </span>
                 <span className="rating-count">
-                  ({details.reviewsCount || 120} reviews)
+                  ({details.reviewsCount || 120}
+                  {typeof details.reviewsCount === "number" ? " reviews" : ""})
                 </span>
               </div>
 
               <button
-                className={`dest-fav-btn ${isFavorite ? "active" : ""}`}
-                onClick={() => setIsFavorite(!isFavorite)}
+                className={`dest-fav-btn ${savedAsFavorite ? "active" : ""}`}
+                onClick={() => toggleFavorite("destinations", details.slug)}
+                aria-pressed={savedAsFavorite}
               >
-                <span>{isFavorite ? "Saved" : "Add to Favorites"}</span>
-                <Heart size={16} fill={isFavorite ? "#fff" : "none"} />
+                <span>{savedAsFavorite ? "Saved" : "Add to Favorites"}</span>
+                <Heart size={16} fill={savedAsFavorite ? "#fff" : "none"} />
               </button>
             </div>
           </div>
@@ -216,7 +204,7 @@ function DestinationDetails() {
                   className={`gallery-thumb ${
                     currentHeroImage === img ? "active-thumb" : ""
                   }`}
-                  onClick={() => setCurrentHeroImage(img)}
+                  onClick={() => setImageChoice({ id, image: img })}
                   style={{ cursor: "pointer" }}
                 >
                   <img
@@ -248,37 +236,35 @@ function DestinationDetails() {
         <div className="dest-layout">
           <div className="dest-main-column">
             {/* Overview Section */}
-            {activeTab === "Overview" && (
-              <section id="sec-overview" className="dest-section">
-                <h2 className="section-heading">About {details.name}</h2>
-                <p className="section-paragraph">
-                  {details.aboutText || details.description}
-                </p>
+            <section id="sec-overview" className="dest-section">
+              <h2 className="section-heading">About {details.name}</h2>
+              <p className="section-paragraph">
+                {details.aboutText || details.description}
+              </p>
 
-                {details.whyVisit && details.whyVisit.length > 0 && (
-                  <div className="why-visit-card">
-                    <div className="why-visit-info">
-                      <h3>Why visit {details.name}?</h3>
-                      <ul>
-                        {details.whyVisit.map((item, idx) => (
-                          <li key={idx}>
-                            <Check size={16} className="check-icon" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="why-visit-image">
-                      <img
-                        src={currentHeroImage}
-                        alt={details.name}
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
+              {details.whyVisit && details.whyVisit.length > 0 && (
+                <div className="why-visit-card">
+                  <div className="why-visit-info">
+                    <h3>Why visit {details.name}?</h3>
+                    <ul>
+                      {details.whyVisit.map((item, idx) => (
+                        <li key={idx}>
+                          <Check size={16} className="check-icon" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                )}
-              </section>
-            )}
+                  <div className="why-visit-image">
+                    <img
+                      src={currentHeroImage}
+                      alt={details.name}
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                </div>
+              )}
+            </section>
 
             {/* Things to Do Section */}
             <section id="sec-activities" className="dest-section">

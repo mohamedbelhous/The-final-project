@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import { useBooking } from "../../context/BookingContext";
 import {
   MapPin,
@@ -18,13 +19,36 @@ import "./DealDetails.css";
 
 function DealDetails() {
   const { id } = useParams();
-  const deal = getDealById(id) || getDealById("flash-1");
+  const deal = getDealById(id);
+
+  const { user } = useContext(AuthContext);
+  const { addBooking } = useBooking();
 
   const [guests, setGuests] = useState(1);
   const [selectedDate, setSelectedDate] = useState("");
   const [isBooked, setIsBooked] = useState(false);
+  const [bookingRef, setBookingRef] = useState("");
 
-  const { addBooking } = useBooking();
+  const today = new Date().toISOString().split("T")[0];
+
+  if (!deal) {
+    return (
+      <div className="deal-details-page">
+        <main className="details-container">
+          <div className="deal-not-found">
+            <h1>Deal not found</h1>
+            <p>
+              This offer may have expired or the link is incorrect. Browse the
+              latest deals instead.
+            </p>
+            <Link to="/deals" className="submit-booking-btn">
+              Back to Deals
+            </Link>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   const pricePerPerson = deal.discountedPrice || deal.price || 120;
   const totalPrice = pricePerPerson * guests;
@@ -36,16 +60,21 @@ function DealDetails() {
       return;
     }
 
-    addBooking({
+    const booking = addBooking({
       dealId: deal.id,
       title: deal.title,
+      destinationName: deal.title,
       location: deal.location,
       date: selectedDate,
-      guests: guests,
-      totalPrice: totalPrice,
+      guests,
+      totalPrice,
       image: deal.image,
+      userEmail: user?.email,
+      fullName: user?.name,
+      email: user?.email,
     });
 
+    setBookingRef(booking.bookingId);
     setIsBooked(true);
   };
 
@@ -159,6 +188,7 @@ function DealDetails() {
                     <input
                       type="date"
                       required
+                      min={today}
                       value={selectedDate}
                       onChange={(e) => setSelectedDate(e.target.value)}
                     />
@@ -178,7 +208,9 @@ function DealDetails() {
                       <span>{guests}</span>
                       <button
                         type="button"
-                        onClick={() => setGuests(guests + 1)}
+                        onClick={() =>
+                          setGuests(Math.min(10, guests + 1))
+                        }
                       >
                         +
                       </button>
@@ -211,8 +243,8 @@ function DealDetails() {
                   <CheckCircle2 size={48} color="#10b981" />
                   <h3>Booking Confirmed!</h3>
                   <p>
-                    Your trip has been added to your account. You can track it
-                    inside your personal dashboard.
+                    Reference <strong>{bookingRef}</strong>. Your trip has been
+                    added to your account and can be tracked in My Trips.
                   </p>
                   <Link
                     to="/trips"

@@ -13,6 +13,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { activitiesData } from "./activitiesData";
+
 export const destinationDetailsData = {
   jijel: {
     slug: "jijel",
@@ -132,4 +134,90 @@ export const destinationDetailsData = {
       },
     ],
   },
+};
+
+const buildFallbackFacts = (destination) => ({
+  location: destination.region || "Algeria",
+  bestTime: "May - October",
+  weather: "Varies by region",
+  language: "Arabic, French",
+  currency: "Algerian Dinar (DZD)",
+});
+
+const getRelatedActivities = (destination) => {
+  const name = (destination.name || "").toLowerCase();
+
+  return activitiesData
+    .filter(
+      (activity) =>
+        name &&
+        (activity.location.toLowerCase().includes(name) ||
+          activity.title.toLowerCase().includes(name)),
+    )
+    .slice(0, 4)
+    .map((activity) => ({
+      title: activity.title,
+      duration: activity.duration,
+      price: `$${activity.price} / person`,
+      image: activity.image,
+    }));
+};
+
+/**
+ * Build a complete detail object for any destination in the catalog.
+ * Jijel has hand-written content; every other destination gets sensible
+ * defaults so its detail page is never empty.
+ */
+export const buildDestinationDetails = (destination) => {
+  if (!destination) return null;
+
+  const rich = destinationDetailsData[destination.slug] || {};
+  const tags = destination.tags || [];
+
+  return {
+    ...destination,
+    ...rich,
+    name: destination.name,
+    title: rich.title || destination.name,
+    subtitle: rich.subtitle || destination.region,
+    heroImage: rich.heroImage || destination.image,
+    galleryImages:
+      rich.galleryImages?.length > 0
+        ? rich.galleryImages
+        : [destination.image].filter(Boolean),
+    rating: rich.rating ?? destination.rating ?? "4.5",
+    reviewsCount:
+      rich.reviewsCount ??
+      (destination.reviewsCount ? `${destination.reviewsCount} reviews` : "New"),
+    pricePerDay: rich.pricePerDay ?? destination.pricePerDay ?? 0,
+    aboutText: rich.aboutText || destination.description,
+    whyVisit:
+      rich.whyVisit ||
+      [
+        tags.length > 0
+          ? `Known for ${tags.join(" and ").toLowerCase()}`
+          : `A memorable ${(destination.category || "travel").toLowerCase()} destination`,
+        `Set in ${destination.region || "Algeria"}`,
+        "Local guides and authentic experiences",
+        "Easy to combine with nearby places",
+      ],
+    quickFacts: rich.quickFacts || buildFallbackFacts(destination),
+    attractions: rich.attractions || [],
+    suggestedActivities:
+      rich.suggestedActivities || getRelatedActivities(destination),
+    accommodations: rich.accommodations || [],
+  };
+};
+
+export const getDestinationDetail = (destinations, id) => {
+  const value = String(id || "").toLowerCase();
+
+  const destination = destinations.find(
+    (item) =>
+      String(item.slug).toLowerCase() === value ||
+      String(item.id) === value ||
+      String(item.name).toLowerCase() === value,
+  );
+
+  return buildDestinationDetails(destination);
 };

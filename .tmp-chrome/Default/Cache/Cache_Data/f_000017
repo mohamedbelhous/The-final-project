@@ -1,0 +1,188 @@
+import jijelImage from "/src/assets/images/jijel.jpg?import";
+import oranImage from "/src/assets/images/oran.jpg?import";
+import timgadImage from "/src/assets/images/tmgad.jpg?import";
+import tarfImage from "/src/assets/images/tarf.jpg?import";
+export const categories = [
+	"All Articles",
+	"Itineraries",
+	"Culture & Tips",
+	"Food & Dining",
+	"Transportation"
+];
+export const guidesList = [
+	{
+		id: 1,
+		slug: "essential-things-to-know-before-visiting-algeria",
+		title: "10 Essential Things to Know Before Visiting Algeria",
+		category: "Culture & Tips",
+		readTime: "5 min read",
+		publishedAt: "2026-08-18",
+		image: jijelImage,
+		excerpt: "Currency tips, SIM cards, local etiquette, and safety guidelines for international travelers.",
+		content: [
+			{
+				title: "Plan around the practical details",
+				text: "Algeria rewards travelers who prepare a little before arriving. Carry some Algerian dinars in cash, keep a copy of your passport, and download offline maps before heading to remote areas.",
+				items: [
+					"The local currency is the Algerian dinar (DZD).",
+					"SIM cards are available at the airport and from local operators.",
+					"French and Arabic are the most widely used languages in daily life."
+				]
+			},
+			{
+				title: "Respect local customs",
+				text: "Hospitality is central to Algerian culture. Returning a greeting, accepting mint tea when offered, and dressing modestly in rural areas will make your trip smoother and more welcoming."
+			},
+			{
+				title: "Move at a comfortable pace",
+				text: "Distances between regions are long. Rather than rushing across the country, pick a region and give yourself time to explore it properly."
+			}
+		]
+	},
+	{
+		id: 2,
+		slug: "algerian-street-food-journey",
+		title: "A Culinary Journey Through Algerian Street Food",
+		category: "Food & Dining",
+		readTime: "4 min read",
+		publishedAt: "2026-08-05",
+		image: timgadImage,
+		excerpt: "From Mahjouba to authentic Rechta: discover what and where to eat in Algiers and Constantine.",
+		content: [
+			{
+				title: "Start with the classics",
+				text: "Algerian street food is built around fresh bread, vegetables, and slow-cooked flavors. Start your day with a warm mahjouba, a thin semolina flatbread folded around a spicy tomato and onion filling."
+			},
+			{
+				title: "What to try next",
+				text: "Work your way through the country's regional specialties. In the east, look for rechta and tajine; along the coast, fresh sardines are a must.",
+				items: [
+					"Karantika: a savory chickpea bake, often eaten on the go.",
+					"Bourek: crisp pastry rolls filled with meat or cheese.",
+					"Mhalbi: a simple, fragrant rice pudding for dessert."
+				]
+			},
+			{
+				title: "Eat where the locals eat",
+				text: "The best street food is usually found where there is a steady queue, a short menu, and food being prepared in front of you. Small neighborhood spots are often far better than tourist-oriented restaurants."
+			}
+		]
+	},
+	{
+		id: 3,
+		slug: "travel-between-algerian-cities",
+		title: "How to Travel Between Cities: Trains, Buses & Flights",
+		category: "Transportation",
+		readTime: "7 min read",
+		publishedAt: "2026-07-22",
+		image: tarfImage,
+		excerpt: "Complete transport guide covering domestic Air Algérie flights, SNTF train networks, and taxis.",
+		content: [
+			{
+				title: "Choose the right mode for the distance",
+				text: "For long distances, domestic flights save days of travel. Along the northern coast, trains and intercity coaches are comfortable and affordable alternatives."
+			},
+			{
+				title: "Book trains and coaches early",
+				text: "Popular weekend services can fill up, especially around holidays. Buy tickets in advance where possible and arrive early at the station.",
+				items: [
+					"SNTF trains connect Algiers with Oran, Constantine, Annaba, and other northern cities.",
+					"Intercity coaches reach most towns that are not served by rail.",
+					"Shared taxis are useful for short regional hops."
+				]
+			},
+			{
+				title: "Allow extra time in the south",
+				text: "Travel in the Sahara is slower and more dependent on local operators. Distances are large and roads can be affected by weather, so build buffer time into any desert itinerary."
+			}
+		]
+	},
+	{
+		id: 4,
+		slug: "roman-ruins-timgad-djemila",
+		title: "Exploring the Ancient Roman Ruins of Timgad & Djemila",
+		category: "Itineraries",
+		readTime: "6 min read",
+		publishedAt: "2026-07-10",
+		image: timgadImage,
+		excerpt: "Step back in time to explore two of the Mediterranean region's most pristine Roman archeological treasures.",
+		content: [
+			{
+				title: "A two-site itinerary",
+				text: "Timgad and Djemila are both UNESCO World Heritage sites, yet they feel very different. Give each one at least half a day, and start early to avoid the midday heat."
+			},
+			{
+				title: "What you will see",
+				text: "Timgad is famous for its grid plan and the Arch of Trajan, while Djemila sits dramatically on a mountain ridge with a well-preserved forum and temples.",
+				items: [
+					"Bring water, sun protection, and comfortable shoes.",
+					"Hire a local guide to understand the inscriptions and mosaics.",
+					"Visit the site museums for artifacts found during excavations."
+				]
+			},
+			{
+				title: "Getting there",
+				text: "Timgad is close to Batna, and Djemila is a short drive from Sétif. Both can be reached by coach or taxi from nearby cities, making them easy to combine with a wider northern itinerary."
+			}
+		]
+	},
+	{
+		id: 5,
+		slug: "coastal-hidden-gems-jijel-el-tarf",
+		title: "Coastal Escape: The Hidden Gems of Jijel & El Tarf",
+		category: "Itineraries",
+		readTime: "5 min read",
+		publishedAt: "2026-06-28",
+		image: jijelImage,
+		excerpt: "Unspoiled Mediterranean beaches, lush national parks, and peaceful coastal retreats.",
+		content: [
+			{
+				title: "Why the east coast is special",
+				text: "The coastline between Jijel and El Tarf combines turquoise water with forested mountains. It is one of the most scenic parts of Algeria and remains pleasantly uncrowded outside peak summer weeks."
+			},
+			{
+				title: "Suggested stops",
+				text: "Base yourself in Jijel for beaches and boat trips, then move east toward El Tarf for national park walks and quieter lakes.",
+				items: [
+					"Taza National Park for coastal hiking.",
+					"El Aouana for sandy beaches and seafood.",
+					"El Kala National Park for wetlands and birdlife."
+				]
+			},
+			{
+				title: "When to go",
+				text: "Late spring and early autumn offer warm water with fewer visitors. Summer is livelier, but book accommodation well ahead."
+			}
+		]
+	},
+	{
+		id: 6,
+		slug: "respecting-local-culture-algeria",
+		title: "Respecting Local Culture & Customs in Algeria",
+		category: "Culture & Tips",
+		readTime: "4 min read",
+		publishedAt: "2026-06-12",
+		image: oranImage,
+		excerpt: "Important social etiquette, photography rules, and hospitality norms to make your trip smooth.",
+		content: [
+			{
+				title: "Greetings matter",
+				text: "A simple salam or bonjour goes a long way. Take time to greet shopkeepers and hosts before asking questions or making a request."
+			},
+			{
+				title: "Ask before taking photos",
+				text: "People are often happy to be photographed, but always ask first. Avoid photographing military installations, checkpoints, and other sensitive sites."
+			},
+			{
+				title: "Be a thoughtful guest",
+				text: "Dress modestly in rural areas and religious sites, remove your shoes when appropriate, and accept hospitality graciously. Small gestures of respect are noticed and appreciated."
+			}
+		]
+	}
+];
+export const getGuideBySlug = (slug) => {
+	const value = String(slug || "").toLowerCase();
+	return guidesList.find((guide) => guide.slug === value || String(guide.id) === value || guide.title.toLowerCase() === value) || null;
+};
+
+//# sourceMappingURL=data:application/json;base64,eyJtYXBwaW5ncyI6IkFBQUEsT0FBTyxnQkFBZ0I7QUFDdkIsT0FBTyxlQUFlO0FBQ3RCLE9BQU8saUJBQWlCO0FBQ3hCLE9BQU8sZUFBZTtBQUV0QixPQUFPLE1BQU0sYUFBYTtDQUN4QjtDQUNBO0NBQ0E7Q0FDQTtDQUNBO0FBQ0Y7QUFFQSxPQUFPLE1BQU0sYUFBYTtDQUN4QjtFQUNFLElBQUk7RUFDSixNQUFNO0VBQ04sT0FBTztFQUNQLFVBQVU7RUFDVixVQUFVO0VBQ1YsYUFBYTtFQUNiLE9BQU87RUFDUCxTQUNFO0VBQ0YsU0FBUztHQUNQO0lBQ0UsT0FBTztJQUNQLE1BQU07SUFDTixPQUFPO0tBQ0w7S0FDQTtLQUNBO0lBQ0Y7R0FDRjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtFQUNGO0NBQ0Y7Q0FDQTtFQUNFLElBQUk7RUFDSixNQUFNO0VBQ04sT0FBTztFQUNQLFVBQVU7RUFDVixVQUFVO0VBQ1YsYUFBYTtFQUNiLE9BQU87RUFDUCxTQUNFO0VBQ0YsU0FBUztHQUNQO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07SUFDTixPQUFPO0tBQ0w7S0FDQTtLQUNBO0lBQ0Y7R0FDRjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtFQUNGO0NBQ0Y7Q0FDQTtFQUNFLElBQUk7RUFDSixNQUFNO0VBQ04sT0FBTztFQUNQLFVBQVU7RUFDVixVQUFVO0VBQ1YsYUFBYTtFQUNiLE9BQU87RUFDUCxTQUNFO0VBQ0YsU0FBUztHQUNQO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07SUFDTixPQUFPO0tBQ0w7S0FDQTtLQUNBO0lBQ0Y7R0FDRjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtFQUNGO0NBQ0Y7Q0FDQTtFQUNFLElBQUk7RUFDSixNQUFNO0VBQ04sT0FBTztFQUNQLFVBQVU7RUFDVixVQUFVO0VBQ1YsYUFBYTtFQUNiLE9BQU87RUFDUCxTQUNFO0VBQ0YsU0FBUztHQUNQO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07SUFDTixPQUFPO0tBQ0w7S0FDQTtLQUNBO0lBQ0Y7R0FDRjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtFQUNGO0NBQ0Y7Q0FDQTtFQUNFLElBQUk7RUFDSixNQUFNO0VBQ04sT0FBTztFQUNQLFVBQVU7RUFDVixVQUFVO0VBQ1YsYUFBYTtFQUNiLE9BQU87RUFDUCxTQUNFO0VBQ0YsU0FBUztHQUNQO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07SUFDTixPQUFPO0tBQ0w7S0FDQTtLQUNBO0lBQ0Y7R0FDRjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtFQUNGO0NBQ0Y7Q0FDQTtFQUNFLElBQUk7RUFDSixNQUFNO0VBQ04sT0FBTztFQUNQLFVBQVU7RUFDVixVQUFVO0VBQ1YsYUFBYTtFQUNiLE9BQU87RUFDUCxTQUNFO0VBQ0YsU0FBUztHQUNQO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtHQUNBO0lBQ0UsT0FBTztJQUNQLE1BQU07R0FDUjtFQUNGO0NBQ0Y7QUFDRjtBQUVBLE9BQU8sTUFBTSxrQkFBa0IsU0FBUztDQUN0QyxNQUFNLFFBQVEsT0FBTyxRQUFRLEVBQUUsQ0FBQyxDQUFDLFlBQVk7Q0FDN0MsT0FDRSxXQUFXLE1BQ1IsVUFDQyxNQUFNLFNBQVMsU0FDZixPQUFPLE1BQU0sRUFBRSxNQUFNLFNBQ3JCLE1BQU0sTUFBTSxZQUFZLE1BQU0sS0FDbEMsS0FBSztBQUVUIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbInRyYXZlbEd1aWRlRGF0YS5qcyJdLCJ2ZXJzaW9uIjozLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgamlqZWxJbWFnZSBmcm9tIFwiLi4vYXNzZXRzL2ltYWdlcy9qaWplbC5qcGdcIjtcclxuaW1wb3J0IG9yYW5JbWFnZSBmcm9tIFwiLi4vYXNzZXRzL2ltYWdlcy9vcmFuLmpwZ1wiO1xyXG5pbXBvcnQgdGltZ2FkSW1hZ2UgZnJvbSBcIi4uL2Fzc2V0cy9pbWFnZXMvdG1nYWQuanBnXCI7XHJcbmltcG9ydCB0YXJmSW1hZ2UgZnJvbSBcIi4uL2Fzc2V0cy9pbWFnZXMvdGFyZi5qcGdcIjtcclxuXHJcbmV4cG9ydCBjb25zdCBjYXRlZ29yaWVzID0gW1xyXG4gIFwiQWxsIEFydGljbGVzXCIsXHJcbiAgXCJJdGluZXJhcmllc1wiLFxyXG4gIFwiQ3VsdHVyZSAmIFRpcHNcIixcclxuICBcIkZvb2QgJiBEaW5pbmdcIixcclxuICBcIlRyYW5zcG9ydGF0aW9uXCIsXHJcbl07XHJcblxyXG5leHBvcnQgY29uc3QgZ3VpZGVzTGlzdCA9IFtcclxuICB7XHJcbiAgICBpZDogMSxcclxuICAgIHNsdWc6IFwiZXNzZW50aWFsLXRoaW5ncy10by1rbm93LWJlZm9yZS12aXNpdGluZy1hbGdlcmlhXCIsXHJcbiAgICB0aXRsZTogXCIxMCBFc3NlbnRpYWwgVGhpbmdzIHRvIEtub3cgQmVmb3JlIFZpc2l0aW5nIEFsZ2VyaWFcIixcclxuICAgIGNhdGVnb3J5OiBcIkN1bHR1cmUgJiBUaXBzXCIsXHJcbiAgICByZWFkVGltZTogXCI1IG1pbiByZWFkXCIsXHJcbiAgICBwdWJsaXNoZWRBdDogXCIyMDI2LTA4LTE4XCIsXHJcbiAgICBpbWFnZTogamlqZWxJbWFnZSxcclxuICAgIGV4Y2VycHQ6XHJcbiAgICAgIFwiQ3VycmVuY3kgdGlwcywgU0lNIGNhcmRzLCBsb2NhbCBldGlxdWV0dGUsIGFuZCBzYWZldHkgZ3VpZGVsaW5lcyBmb3IgaW50ZXJuYXRpb25hbCB0cmF2ZWxlcnMuXCIsXHJcbiAgICBjb250ZW50OiBbXHJcbiAgICAgIHtcclxuICAgICAgICB0aXRsZTogXCJQbGFuIGFyb3VuZCB0aGUgcHJhY3RpY2FsIGRldGFpbHNcIixcclxuICAgICAgICB0ZXh0OiBcIkFsZ2VyaWEgcmV3YXJkcyB0cmF2ZWxlcnMgd2hvIHByZXBhcmUgYSBsaXR0bGUgYmVmb3JlIGFycml2aW5nLiBDYXJyeSBzb21lIEFsZ2VyaWFuIGRpbmFycyBpbiBjYXNoLCBrZWVwIGEgY29weSBvZiB5b3VyIHBhc3Nwb3J0LCBhbmQgZG93bmxvYWQgb2ZmbGluZSBtYXBzIGJlZm9yZSBoZWFkaW5nIHRvIHJlbW90ZSBhcmVhcy5cIixcclxuICAgICAgICBpdGVtczogW1xyXG4gICAgICAgICAgXCJUaGUgbG9jYWwgY3VycmVuY3kgaXMgdGhlIEFsZ2VyaWFuIGRpbmFyIChEWkQpLlwiLFxyXG4gICAgICAgICAgXCJTSU0gY2FyZHMgYXJlIGF2YWlsYWJsZSBhdCB0aGUgYWlycG9ydCBhbmQgZnJvbSBsb2NhbCBvcGVyYXRvcnMuXCIsXHJcbiAgICAgICAgICBcIkZyZW5jaCBhbmQgQXJhYmljIGFyZSB0aGUgbW9zdCB3aWRlbHkgdXNlZCBsYW5ndWFnZXMgaW4gZGFpbHkgbGlmZS5cIixcclxuICAgICAgICBdLFxyXG4gICAgICB9LFxyXG4gICAgICB7XHJcbiAgICAgICAgdGl0bGU6IFwiUmVzcGVjdCBsb2NhbCBjdXN0b21zXCIsXHJcbiAgICAgICAgdGV4dDogXCJIb3NwaXRhbGl0eSBpcyBjZW50cmFsIHRvIEFsZ2VyaWFuIGN1bHR1cmUuIFJldHVybmluZyBhIGdyZWV0aW5nLCBhY2NlcHRpbmcgbWludCB0ZWEgd2hlbiBvZmZlcmVkLCBhbmQgZHJlc3NpbmcgbW9kZXN0bHkgaW4gcnVyYWwgYXJlYXMgd2lsbCBtYWtlIHlvdXIgdHJpcCBzbW9vdGhlciBhbmQgbW9yZSB3ZWxjb21pbmcuXCIsXHJcbiAgICAgIH0sXHJcbiAgICAgIHtcclxuICAgICAgICB0aXRsZTogXCJNb3ZlIGF0IGEgY29tZm9ydGFibGUgcGFjZVwiLFxyXG4gICAgICAgIHRleHQ6IFwiRGlzdGFuY2VzIGJldHdlZW4gcmVnaW9ucyBhcmUgbG9uZy4gUmF0aGVyIHRoYW4gcnVzaGluZyBhY3Jvc3MgdGhlIGNvdW50cnksIHBpY2sgYSByZWdpb24gYW5kIGdpdmUgeW91cnNlbGYgdGltZSB0byBleHBsb3JlIGl0IHByb3Blcmx5LlwiLFxyXG4gICAgICB9LFxyXG4gICAgXSxcclxuICB9LFxyXG4gIHtcclxuICAgIGlkOiAyLFxyXG4gICAgc2x1ZzogXCJhbGdlcmlhbi1zdHJlZXQtZm9vZC1qb3VybmV5XCIsXHJcbiAgICB0aXRsZTogXCJBIEN1bGluYXJ5IEpvdXJuZXkgVGhyb3VnaCBBbGdlcmlhbiBTdHJlZXQgRm9vZFwiLFxyXG4gICAgY2F0ZWdvcnk6IFwiRm9vZCAmIERpbmluZ1wiLFxyXG4gICAgcmVhZFRpbWU6IFwiNCBtaW4gcmVhZFwiLFxyXG4gICAgcHVibGlzaGVkQXQ6IFwiMjAyNi0wOC0wNVwiLFxyXG4gICAgaW1hZ2U6IHRpbWdhZEltYWdlLFxyXG4gICAgZXhjZXJwdDpcclxuICAgICAgXCJGcm9tIE1haGpvdWJhIHRvIGF1dGhlbnRpYyBSZWNodGE6IGRpc2NvdmVyIHdoYXQgYW5kIHdoZXJlIHRvIGVhdCBpbiBBbGdpZXJzIGFuZCBDb25zdGFudGluZS5cIixcclxuICAgIGNvbnRlbnQ6IFtcclxuICAgICAge1xyXG4gICAgICAgIHRpdGxlOiBcIlN0YXJ0IHdpdGggdGhlIGNsYXNzaWNzXCIsXHJcbiAgICAgICAgdGV4dDogXCJBbGdlcmlhbiBzdHJlZXQgZm9vZCBpcyBidWlsdCBhcm91bmQgZnJlc2ggYnJlYWQsIHZlZ2V0YWJsZXMsIGFuZCBzbG93LWNvb2tlZCBmbGF2b3JzLiBTdGFydCB5b3VyIGRheSB3aXRoIGEgd2FybSBtYWhqb3ViYSwgYSB0aGluIHNlbW9saW5hIGZsYXRicmVhZCBmb2xkZWQgYXJvdW5kIGEgc3BpY3kgdG9tYXRvIGFuZCBvbmlvbiBmaWxsaW5nLlwiLFxyXG4gICAgICB9LFxyXG4gICAgICB7XHJcbiAgICAgICAgdGl0bGU6IFwiV2hhdCB0byB0cnkgbmV4dFwiLFxyXG4gICAgICAgIHRleHQ6IFwiV29yayB5b3VyIHdheSB0aHJvdWdoIHRoZSBjb3VudHJ5J3MgcmVnaW9uYWwgc3BlY2lhbHRpZXMuIEluIHRoZSBlYXN0LCBsb29rIGZvciByZWNodGEgYW5kIHRhamluZTsgYWxvbmcgdGhlIGNvYXN0LCBmcmVzaCBzYXJkaW5lcyBhcmUgYSBtdXN0LlwiLFxyXG4gICAgICAgIGl0ZW1zOiBbXHJcbiAgICAgICAgICBcIkthcmFudGlrYTogYSBzYXZvcnkgY2hpY2twZWEgYmFrZSwgb2Z0ZW4gZWF0ZW4gb24gdGhlIGdvLlwiLFxyXG4gICAgICAgICAgXCJCb3VyZWs6IGNyaXNwIHBhc3RyeSByb2xscyBmaWxsZWQgd2l0aCBtZWF0IG9yIGNoZWVzZS5cIixcclxuICAgICAgICAgIFwiTWhhbGJpOiBhIHNpbXBsZSwgZnJhZ3JhbnQgcmljZSBwdWRkaW5nIGZvciBkZXNzZXJ0LlwiLFxyXG4gICAgICAgIF0sXHJcbiAgICAgIH0sXHJcbiAgICAgIHtcclxuICAgICAgICB0aXRsZTogXCJFYXQgd2hlcmUgdGhlIGxvY2FscyBlYXRcIixcclxuICAgICAgICB0ZXh0OiBcIlRoZSBiZXN0IHN0cmVldCBmb29kIGlzIHVzdWFsbHkgZm91bmQgd2hlcmUgdGhlcmUgaXMgYSBzdGVhZHkgcXVldWUsIGEgc2hvcnQgbWVudSwgYW5kIGZvb2QgYmVpbmcgcHJlcGFyZWQgaW4gZnJvbnQgb2YgeW91LiBTbWFsbCBuZWlnaGJvcmhvb2Qgc3BvdHMgYXJlIG9mdGVuIGZhciBiZXR0ZXIgdGhhbiB0b3VyaXN0LW9yaWVudGVkIHJlc3RhdXJhbnRzLlwiLFxyXG4gICAgICB9LFxyXG4gICAgXSxcclxuICB9LFxyXG4gIHtcclxuICAgIGlkOiAzLFxyXG4gICAgc2x1ZzogXCJ0cmF2ZWwtYmV0d2Vlbi1hbGdlcmlhbi1jaXRpZXNcIixcclxuICAgIHRpdGxlOiBcIkhvdyB0byBUcmF2ZWwgQmV0d2VlbiBDaXRpZXM6IFRyYWlucywgQnVzZXMgJiBGbGlnaHRzXCIsXHJcbiAgICBjYXRlZ29yeTogXCJUcmFuc3BvcnRhdGlvblwiLFxyXG4gICAgcmVhZFRpbWU6IFwiNyBtaW4gcmVhZFwiLFxyXG4gICAgcHVibGlzaGVkQXQ6IFwiMjAyNi0wNy0yMlwiLFxyXG4gICAgaW1hZ2U6IHRhcmZJbWFnZSxcclxuICAgIGV4Y2VycHQ6XHJcbiAgICAgIFwiQ29tcGxldGUgdHJhbnNwb3J0IGd1aWRlIGNvdmVyaW5nIGRvbWVzdGljIEFpciBBbGfDqXJpZSBmbGlnaHRzLCBTTlRGIHRyYWluIG5ldHdvcmtzLCBhbmQgdGF4aXMuXCIsXHJcbiAgICBjb250ZW50OiBbXHJcbiAgICAgIHtcclxuICAgICAgICB0aXRsZTogXCJDaG9vc2UgdGhlIHJpZ2h0IG1vZGUgZm9yIHRoZSBkaXN0YW5jZVwiLFxyXG4gICAgICAgIHRleHQ6IFwiRm9yIGxvbmcgZGlzdGFuY2VzLCBkb21lc3RpYyBmbGlnaHRzIHNhdmUgZGF5cyBvZiB0cmF2ZWwuIEFsb25nIHRoZSBub3J0aGVybiBjb2FzdCwgdHJhaW5zIGFuZCBpbnRlcmNpdHkgY29hY2hlcyBhcmUgY29tZm9ydGFibGUgYW5kIGFmZm9yZGFibGUgYWx0ZXJuYXRpdmVzLlwiLFxyXG4gICAgICB9LFxyXG4gICAgICB7XHJcbiAgICAgICAgdGl0bGU6IFwiQm9vayB0cmFpbnMgYW5kIGNvYWNoZXMgZWFybHlcIixcclxuICAgICAgICB0ZXh0OiBcIlBvcHVsYXIgd2Vla2VuZCBzZXJ2aWNlcyBjYW4gZmlsbCB1cCwgZXNwZWNpYWxseSBhcm91bmQgaG9saWRheXMuIEJ1eSB0aWNrZXRzIGluIGFkdmFuY2Ugd2hlcmUgcG9zc2libGUgYW5kIGFycml2ZSBlYXJseSBhdCB0aGUgc3RhdGlvbi5cIixcclxuICAgICAgICBpdGVtczogW1xyXG4gICAgICAgICAgXCJTTlRGIHRyYWlucyBjb25uZWN0IEFsZ2llcnMgd2l0aCBPcmFuLCBDb25zdGFudGluZSwgQW5uYWJhLCBhbmQgb3RoZXIgbm9ydGhlcm4gY2l0aWVzLlwiLFxyXG4gICAgICAgICAgXCJJbnRlcmNpdHkgY29hY2hlcyByZWFjaCBtb3N0IHRvd25zIHRoYXQgYXJlIG5vdCBzZXJ2ZWQgYnkgcmFpbC5cIixcclxuICAgICAgICAgIFwiU2hhcmVkIHRheGlzIGFyZSB1c2VmdWwgZm9yIHNob3J0IHJlZ2lvbmFsIGhvcHMuXCIsXHJcbiAgICAgICAgXSxcclxuICAgICAgfSxcclxuICAgICAge1xyXG4gICAgICAgIHRpdGxlOiBcIkFsbG93IGV4dHJhIHRpbWUgaW4gdGhlIHNvdXRoXCIsXHJcbiAgICAgICAgdGV4dDogXCJUcmF2ZWwgaW4gdGhlIFNhaGFyYSBpcyBzbG93ZXIgYW5kIG1vcmUgZGVwZW5kZW50IG9uIGxvY2FsIG9wZXJhdG9ycy4gRGlzdGFuY2VzIGFyZSBsYXJnZSBhbmQgcm9hZHMgY2FuIGJlIGFmZmVjdGVkIGJ5IHdlYXRoZXIsIHNvIGJ1aWxkIGJ1ZmZlciB0aW1lIGludG8gYW55IGRlc2VydCBpdGluZXJhcnkuXCIsXHJcbiAgICAgIH0sXHJcbiAgICBdLFxyXG4gIH0sXHJcbiAge1xyXG4gICAgaWQ6IDQsXHJcbiAgICBzbHVnOiBcInJvbWFuLXJ1aW5zLXRpbWdhZC1kamVtaWxhXCIsXHJcbiAgICB0aXRsZTogXCJFeHBsb3JpbmcgdGhlIEFuY2llbnQgUm9tYW4gUnVpbnMgb2YgVGltZ2FkICYgRGplbWlsYVwiLFxyXG4gICAgY2F0ZWdvcnk6IFwiSXRpbmVyYXJpZXNcIixcclxuICAgIHJlYWRUaW1lOiBcIjYgbWluIHJlYWRcIixcclxuICAgIHB1Ymxpc2hlZEF0OiBcIjIwMjYtMDctMTBcIixcclxuICAgIGltYWdlOiB0aW1nYWRJbWFnZSxcclxuICAgIGV4Y2VycHQ6XHJcbiAgICAgIFwiU3RlcCBiYWNrIGluIHRpbWUgdG8gZXhwbG9yZSB0d28gb2YgdGhlIE1lZGl0ZXJyYW5lYW4gcmVnaW9uJ3MgbW9zdCBwcmlzdGluZSBSb21hbiBhcmNoZW9sb2dpY2FsIHRyZWFzdXJlcy5cIixcclxuICAgIGNvbnRlbnQ6IFtcclxuICAgICAge1xyXG4gICAgICAgIHRpdGxlOiBcIkEgdHdvLXNpdGUgaXRpbmVyYXJ5XCIsXHJcbiAgICAgICAgdGV4dDogXCJUaW1nYWQgYW5kIERqZW1pbGEgYXJlIGJvdGggVU5FU0NPIFdvcmxkIEhlcml0YWdlIHNpdGVzLCB5ZXQgdGhleSBmZWVsIHZlcnkgZGlmZmVyZW50LiBHaXZlIGVhY2ggb25lIGF0IGxlYXN0IGhhbGYgYSBkYXksIGFuZCBzdGFydCBlYXJseSB0byBhdm9pZCB0aGUgbWlkZGF5IGhlYXQuXCIsXHJcbiAgICAgIH0sXHJcbiAgICAgIHtcclxuICAgICAgICB0aXRsZTogXCJXaGF0IHlvdSB3aWxsIHNlZVwiLFxyXG4gICAgICAgIHRleHQ6IFwiVGltZ2FkIGlzIGZhbW91cyBmb3IgaXRzIGdyaWQgcGxhbiBhbmQgdGhlIEFyY2ggb2YgVHJhamFuLCB3aGlsZSBEamVtaWxhIHNpdHMgZHJhbWF0aWNhbGx5IG9uIGEgbW91bnRhaW4gcmlkZ2Ugd2l0aCBhIHdlbGwtcHJlc2VydmVkIGZvcnVtIGFuZCB0ZW1wbGVzLlwiLFxyXG4gICAgICAgIGl0ZW1zOiBbXHJcbiAgICAgICAgICBcIkJyaW5nIHdhdGVyLCBzdW4gcHJvdGVjdGlvbiwgYW5kIGNvbWZvcnRhYmxlIHNob2VzLlwiLFxyXG4gICAgICAgICAgXCJIaXJlIGEgbG9jYWwgZ3VpZGUgdG8gdW5kZXJzdGFuZCB0aGUgaW5zY3JpcHRpb25zIGFuZCBtb3NhaWNzLlwiLFxyXG4gICAgICAgICAgXCJWaXNpdCB0aGUgc2l0ZSBtdXNldW1zIGZvciBhcnRpZmFjdHMgZm91bmQgZHVyaW5nIGV4Y2F2YXRpb25zLlwiLFxyXG4gICAgICAgIF0sXHJcbiAgICAgIH0sXHJcbiAgICAgIHtcclxuICAgICAgICB0aXRsZTogXCJHZXR0aW5nIHRoZXJlXCIsXHJcbiAgICAgICAgdGV4dDogXCJUaW1nYWQgaXMgY2xvc2UgdG8gQmF0bmEsIGFuZCBEamVtaWxhIGlzIGEgc2hvcnQgZHJpdmUgZnJvbSBTw6l0aWYuIEJvdGggY2FuIGJlIHJlYWNoZWQgYnkgY29hY2ggb3IgdGF4aSBmcm9tIG5lYXJieSBjaXRpZXMsIG1ha2luZyB0aGVtIGVhc3kgdG8gY29tYmluZSB3aXRoIGEgd2lkZXIgbm9ydGhlcm4gaXRpbmVyYXJ5LlwiLFxyXG4gICAgICB9LFxyXG4gICAgXSxcclxuICB9LFxyXG4gIHtcclxuICAgIGlkOiA1LFxyXG4gICAgc2x1ZzogXCJjb2FzdGFsLWhpZGRlbi1nZW1zLWppamVsLWVsLXRhcmZcIixcclxuICAgIHRpdGxlOiBcIkNvYXN0YWwgRXNjYXBlOiBUaGUgSGlkZGVuIEdlbXMgb2YgSmlqZWwgJiBFbCBUYXJmXCIsXHJcbiAgICBjYXRlZ29yeTogXCJJdGluZXJhcmllc1wiLFxyXG4gICAgcmVhZFRpbWU6IFwiNSBtaW4gcmVhZFwiLFxyXG4gICAgcHVibGlzaGVkQXQ6IFwiMjAyNi0wNi0yOFwiLFxyXG4gICAgaW1hZ2U6IGppamVsSW1hZ2UsXHJcbiAgICBleGNlcnB0OlxyXG4gICAgICBcIlVuc3BvaWxlZCBNZWRpdGVycmFuZWFuIGJlYWNoZXMsIGx1c2ggbmF0aW9uYWwgcGFya3MsIGFuZCBwZWFjZWZ1bCBjb2FzdGFsIHJldHJlYXRzLlwiLFxyXG4gICAgY29udGVudDogW1xyXG4gICAgICB7XHJcbiAgICAgICAgdGl0bGU6IFwiV2h5IHRoZSBlYXN0IGNvYXN0IGlzIHNwZWNpYWxcIixcclxuICAgICAgICB0ZXh0OiBcIlRoZSBjb2FzdGxpbmUgYmV0d2VlbiBKaWplbCBhbmQgRWwgVGFyZiBjb21iaW5lcyB0dXJxdW9pc2Ugd2F0ZXIgd2l0aCBmb3Jlc3RlZCBtb3VudGFpbnMuIEl0IGlzIG9uZSBvZiB0aGUgbW9zdCBzY2VuaWMgcGFydHMgb2YgQWxnZXJpYSBhbmQgcmVtYWlucyBwbGVhc2FudGx5IHVuY3Jvd2RlZCBvdXRzaWRlIHBlYWsgc3VtbWVyIHdlZWtzLlwiLFxyXG4gICAgICB9LFxyXG4gICAgICB7XHJcbiAgICAgICAgdGl0bGU6IFwiU3VnZ2VzdGVkIHN0b3BzXCIsXHJcbiAgICAgICAgdGV4dDogXCJCYXNlIHlvdXJzZWxmIGluIEppamVsIGZvciBiZWFjaGVzIGFuZCBib2F0IHRyaXBzLCB0aGVuIG1vdmUgZWFzdCB0b3dhcmQgRWwgVGFyZiBmb3IgbmF0aW9uYWwgcGFyayB3YWxrcyBhbmQgcXVpZXRlciBsYWtlcy5cIixcclxuICAgICAgICBpdGVtczogW1xyXG4gICAgICAgICAgXCJUYXphIE5hdGlvbmFsIFBhcmsgZm9yIGNvYXN0YWwgaGlraW5nLlwiLFxyXG4gICAgICAgICAgXCJFbCBBb3VhbmEgZm9yIHNhbmR5IGJlYWNoZXMgYW5kIHNlYWZvb2QuXCIsXHJcbiAgICAgICAgICBcIkVsIEthbGEgTmF0aW9uYWwgUGFyayBmb3Igd2V0bGFuZHMgYW5kIGJpcmRsaWZlLlwiLFxyXG4gICAgICAgIF0sXHJcbiAgICAgIH0sXHJcbiAgICAgIHtcclxuICAgICAgICB0aXRsZTogXCJXaGVuIHRvIGdvXCIsXHJcbiAgICAgICAgdGV4dDogXCJMYXRlIHNwcmluZyBhbmQgZWFybHkgYXV0dW1uIG9mZmVyIHdhcm0gd2F0ZXIgd2l0aCBmZXdlciB2aXNpdG9ycy4gU3VtbWVyIGlzIGxpdmVsaWVyLCBidXQgYm9vayBhY2NvbW1vZGF0aW9uIHdlbGwgYWhlYWQuXCIsXHJcbiAgICAgIH0sXHJcbiAgICBdLFxyXG4gIH0sXHJcbiAge1xyXG4gICAgaWQ6IDYsXHJcbiAgICBzbHVnOiBcInJlc3BlY3RpbmctbG9jYWwtY3VsdHVyZS1hbGdlcmlhXCIsXHJcbiAgICB0aXRsZTogXCJSZXNwZWN0aW5nIExvY2FsIEN1bHR1cmUgJiBDdXN0b21zIGluIEFsZ2VyaWFcIixcclxuICAgIGNhdGVnb3J5OiBcIkN1bHR1cmUgJiBUaXBzXCIsXHJcbiAgICByZWFkVGltZTogXCI0IG1pbiByZWFkXCIsXHJcbiAgICBwdWJsaXNoZWRBdDogXCIyMDI2LTA2LTEyXCIsXHJcbiAgICBpbWFnZTogb3JhbkltYWdlLFxyXG4gICAgZXhjZXJwdDpcclxuICAgICAgXCJJbXBvcnRhbnQgc29jaWFsIGV0aXF1ZXR0ZSwgcGhvdG9ncmFwaHkgcnVsZXMsIGFuZCBob3NwaXRhbGl0eSBub3JtcyB0byBtYWtlIHlvdXIgdHJpcCBzbW9vdGguXCIsXHJcbiAgICBjb250ZW50OiBbXHJcbiAgICAgIHtcclxuICAgICAgICB0aXRsZTogXCJHcmVldGluZ3MgbWF0dGVyXCIsXHJcbiAgICAgICAgdGV4dDogXCJBIHNpbXBsZSBzYWxhbSBvciBib25qb3VyIGdvZXMgYSBsb25nIHdheS4gVGFrZSB0aW1lIHRvIGdyZWV0IHNob3BrZWVwZXJzIGFuZCBob3N0cyBiZWZvcmUgYXNraW5nIHF1ZXN0aW9ucyBvciBtYWtpbmcgYSByZXF1ZXN0LlwiLFxyXG4gICAgICB9LFxyXG4gICAgICB7XHJcbiAgICAgICAgdGl0bGU6IFwiQXNrIGJlZm9yZSB0YWtpbmcgcGhvdG9zXCIsXHJcbiAgICAgICAgdGV4dDogXCJQZW9wbGUgYXJlIG9mdGVuIGhhcHB5IHRvIGJlIHBob3RvZ3JhcGhlZCwgYnV0IGFsd2F5cyBhc2sgZmlyc3QuIEF2b2lkIHBob3RvZ3JhcGhpbmcgbWlsaXRhcnkgaW5zdGFsbGF0aW9ucywgY2hlY2twb2ludHMsIGFuZCBvdGhlciBzZW5zaXRpdmUgc2l0ZXMuXCIsXHJcbiAgICAgIH0sXHJcbiAgICAgIHtcclxuICAgICAgICB0aXRsZTogXCJCZSBhIHRob3VnaHRmdWwgZ3Vlc3RcIixcclxuICAgICAgICB0ZXh0OiBcIkRyZXNzIG1vZGVzdGx5IGluIHJ1cmFsIGFyZWFzIGFuZCByZWxpZ2lvdXMgc2l0ZXMsIHJlbW92ZSB5b3VyIHNob2VzIHdoZW4gYXBwcm9wcmlhdGUsIGFuZCBhY2NlcHQgaG9zcGl0YWxpdHkgZ3JhY2lvdXNseS4gU21hbGwgZ2VzdHVyZXMgb2YgcmVzcGVjdCBhcmUgbm90aWNlZCBhbmQgYXBwcmVjaWF0ZWQuXCIsXHJcbiAgICAgIH0sXHJcbiAgICBdLFxyXG4gIH0sXHJcbl07XHJcblxyXG5leHBvcnQgY29uc3QgZ2V0R3VpZGVCeVNsdWcgPSAoc2x1ZykgPT4ge1xyXG4gIGNvbnN0IHZhbHVlID0gU3RyaW5nKHNsdWcgfHwgXCJcIikudG9Mb3dlckNhc2UoKTtcclxuICByZXR1cm4gKFxyXG4gICAgZ3VpZGVzTGlzdC5maW5kKFxyXG4gICAgICAoZ3VpZGUpID0+XHJcbiAgICAgICAgZ3VpZGUuc2x1ZyA9PT0gdmFsdWUgfHxcclxuICAgICAgICBTdHJpbmcoZ3VpZGUuaWQpID09PSB2YWx1ZSB8fFxyXG4gICAgICAgIGd1aWRlLnRpdGxlLnRvTG93ZXJDYXNlKCkgPT09IHZhbHVlLFxyXG4gICAgKSB8fCBudWxsXHJcbiAgKTtcclxufTtcclxuIl19

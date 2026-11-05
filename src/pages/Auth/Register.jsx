@@ -32,7 +32,9 @@ function Register() {
       navigate("/destinations");
     } catch (err) {
       setError(
-        err.response?.data?.message || "Registration failed. Try again.",
+        err.response?.data?.message ||
+          err.message ||
+          "Registration failed. Try again.",
       );
     } finally {
       setLoading(false);

@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Mail, Lock, LogIn } from "lucide-react";
 import { AuthContext } from "../../context/AuthContext";
@@ -13,6 +13,17 @@ function Login() {
 
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from;
+  const redirectTo = from
+    ? {
+        pathname: from.pathname || "/destinations",
+        search: from.search || "",
+        hash: from.hash || "",
+        state: from.state,
+      }
+    : "/destinations";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,10 +36,11 @@ function Login() {
 
     try {
       await login(formData);
-      navigate("/destinations");
+      navigate(redirectTo, { replace: true });
     } catch (err) {
       setError(
         err.response?.data?.message ||
+          err.message ||
           "Failed to login. Please check your credentials.",
       );
     } finally {
@@ -89,6 +101,12 @@ function Login() {
             )}
           </button>
         </form>
+
+        <div className="auth-demo">
+          <strong>{t("loginPage.demoTitle")}</strong>
+          <span>{t("loginPage.demoAdmin")}</span>
+          <span>{t("loginPage.demoTraveler")}</span>
+        </div>
 
         <div className="auth-footer">
           {t("loginPage.footerText")}{" "}

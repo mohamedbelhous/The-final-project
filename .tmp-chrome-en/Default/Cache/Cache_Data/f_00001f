@@ -1,0 +1,298 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/common/Intro/Intro.jsx");const _jsxDEV = __vite__cjsImport4_react_jsxDevRuntime["jsxDEV"];import { useTranslation } from "/node_modules/.vite/deps/react-i18next.js?v=0d68938e";
+import { useNavigate } from "/node_modules/.vite/deps/react-router-dom.js?v=0d68938e";
+import { ArrowRight, Compass, Heart, Sparkles } from "/node_modules/.vite/deps/lucide-react.js?v=0d68938e";
+import "/src/components/common/Intro/Intro.css";
+var _jsxFileName = "C:/Users/shadow/Desktop/The final project/src/components/common/Intro/Intro.jsx";
+import __vite__cjsImport4_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d68938e";
+var _s = $RefreshSig$();
+function Intro() {
+	_s();
+	const { t } = useTranslation();
+	const navigate = useNavigate();
+	return /* @__PURE__ */ _jsxDEV("section", {
+		className: "intro",
+		children: /* @__PURE__ */ _jsxDEV("div", {
+			className: "intro-container",
+			children: [
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "intro-label",
+					children: [
+						/* @__PURE__ */ _jsxDEV("span", { className: "intro-label-line" }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 15,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("span", { children: t("intro.badge") }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 16,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("span", { className: "intro-label-line" }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 17,
+							columnNumber: 11
+						}, this)
+					]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 14,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "intro-content",
+					children: [/* @__PURE__ */ _jsxDEV("div", {
+						className: "intro-heading",
+						children: /* @__PURE__ */ _jsxDEV("h2", { children: [
+							t("intro.titlePart1"),
+							/* @__PURE__ */ _jsxDEV("br", {}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 25,
+								columnNumber: 15
+							}, this),
+							/* @__PURE__ */ _jsxDEV("span", { children: t("intro.titlePart2") }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 26,
+								columnNumber: 15
+							}, this)
+						] }, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 23,
+							columnNumber: 13
+						}, this)
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 22,
+						columnNumber: 11
+					}, this), /* @__PURE__ */ _jsxDEV("div", {
+						className: "intro-description",
+						children: [/* @__PURE__ */ _jsxDEV("p", { children: t("intro.description") }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 31,
+							columnNumber: 13
+						}, this), /* @__PURE__ */ _jsxDEV("button", {
+							className: "intro-button",
+							onClick: () => navigate("/destinations"),
+							children: [/* @__PURE__ */ _jsxDEV("span", { children: t("intro.button") }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 36,
+								columnNumber: 15
+							}, this), /* @__PURE__ */ _jsxDEV(ArrowRight, {
+								size: 16,
+								strokeWidth: 2,
+								className: "intro-btn-icon"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 37,
+								columnNumber: 15
+							}, this)]
+						}, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 32,
+							columnNumber: 13
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 30,
+						columnNumber: 11
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 21,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "intro-features",
+					children: [
+						/* @__PURE__ */ _jsxDEV("div", {
+							className: "intro-feature",
+							children: [/* @__PURE__ */ _jsxDEV("div", {
+								className: "intro-feature-icon",
+								children: /* @__PURE__ */ _jsxDEV(Compass, {
+									size: 20,
+									strokeWidth: 1.8
+								}, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 50,
+									columnNumber: 15
+								}, this)
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 49,
+								columnNumber: 13
+							}, this), /* @__PURE__ */ _jsxDEV("div", {
+								className: "intro-feature-text",
+								children: [
+									/* @__PURE__ */ _jsxDEV("span", {
+										className: "intro-feature-number",
+										children: "01"
+									}, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 53,
+										columnNumber: 15
+									}, this),
+									/* @__PURE__ */ _jsxDEV("h3", { children: t("intro.feature1Title") }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 54,
+										columnNumber: 15
+									}, this),
+									/* @__PURE__ */ _jsxDEV("p", { children: t("intro.feature1Desc") }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 55,
+										columnNumber: 15
+									}, this)
+								]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 52,
+								columnNumber: 13
+							}, this)]
+						}, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 48,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("div", {
+							className: "intro-feature",
+							children: [/* @__PURE__ */ _jsxDEV("div", {
+								className: "intro-feature-icon",
+								children: /* @__PURE__ */ _jsxDEV(Sparkles, {
+									size: 20,
+									strokeWidth: 1.8
+								}, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 61,
+									columnNumber: 15
+								}, this)
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 60,
+								columnNumber: 13
+							}, this), /* @__PURE__ */ _jsxDEV("div", {
+								className: "intro-feature-text",
+								children: [
+									/* @__PURE__ */ _jsxDEV("span", {
+										className: "intro-feature-number",
+										children: "02"
+									}, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 64,
+										columnNumber: 15
+									}, this),
+									/* @__PURE__ */ _jsxDEV("h3", { children: t("intro.feature2Title") }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 65,
+										columnNumber: 15
+									}, this),
+									/* @__PURE__ */ _jsxDEV("p", { children: t("intro.feature2Desc") }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 66,
+										columnNumber: 15
+									}, this)
+								]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 63,
+								columnNumber: 13
+							}, this)]
+						}, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 59,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("div", {
+							className: "intro-feature",
+							children: [/* @__PURE__ */ _jsxDEV("div", {
+								className: "intro-feature-icon",
+								children: /* @__PURE__ */ _jsxDEV(Heart, {
+									size: 20,
+									strokeWidth: 1.8
+								}, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 72,
+									columnNumber: 15
+								}, this)
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 71,
+								columnNumber: 13
+							}, this), /* @__PURE__ */ _jsxDEV("div", {
+								className: "intro-feature-text",
+								children: [
+									/* @__PURE__ */ _jsxDEV("span", {
+										className: "intro-feature-number",
+										children: "03"
+									}, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 75,
+										columnNumber: 15
+									}, this),
+									/* @__PURE__ */ _jsxDEV("h3", { children: t("intro.feature3Title") }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 76,
+										columnNumber: 15
+									}, this),
+									/* @__PURE__ */ _jsxDEV("p", { children: t("intro.feature3Desc") }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 77,
+										columnNumber: 15
+									}, this)
+								]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 74,
+								columnNumber: 13
+							}, this)]
+						}, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 70,
+							columnNumber: 11
+						}, this)
+					]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 47,
+					columnNumber: 9
+				}, this)
+			]
+		}, void 0, true, {
+			fileName: _jsxFileName,
+			lineNumber: 12,
+			columnNumber: 7
+		}, this)
+	}, void 0, false, {
+		fileName: _jsxFileName,
+		lineNumber: 11,
+		columnNumber: 5
+	}, this);
+}
+_s(Intro, "0eMZjqNl4fCLJmFbSCPWQuKsK3c=", false, function() {
+	return [useTranslation, useNavigate];
+});
+_c = Intro;
+export default Intro;
+var _c;
+$RefreshReg$(_c, "Intro");
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+import * as __vite_react_currentExports from "/src/components/common/Intro/Intro.jsx";
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+
+  const currentExports = __vite_react_currentExports;
+  queueMicrotask(() => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/shadow/Desktop/The final project/src/components/common/Intro/Intro.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/shadow/Desktop/The final project/src/components/common/Intro/Intro.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/shadow/Desktop/The final project/src/components/common/Intro/Intro.jsx" + ' ' + id); }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,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eCJdLCJ2ZXJzaW9uIjozLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyB1c2VUcmFuc2xhdGlvbiB9IGZyb20gXCJyZWFjdC1pMThuZXh0XCI7XHJcbmltcG9ydCB7IHVzZU5hdmlnYXRlIH0gZnJvbSBcInJlYWN0LXJvdXRlci1kb21cIjtcclxuaW1wb3J0IHsgQXJyb3dSaWdodCwgQ29tcGFzcywgSGVhcnQsIFNwYXJrbGVzIH0gZnJvbSBcImx1Y2lkZS1yZWFjdFwiO1xyXG5pbXBvcnQgXCIuL0ludHJvLmNzc1wiO1xyXG5cclxuZnVuY3Rpb24gSW50cm8oKSB7XHJcbiAgY29uc3QgeyB0IH0gPSB1c2VUcmFuc2xhdGlvbigpO1xyXG4gIGNvbnN0IG5hdmlnYXRlID0gdXNlTmF2aWdhdGUoKTtcclxuXHJcbiAgcmV0dXJuIChcclxuICAgIDxzZWN0aW9uIGNsYXNzTmFtZT1cImludHJvXCI+XHJcbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiaW50cm8tY29udGFpbmVyXCI+XHJcbiAgICAgICAgey8qIExhYmVsIEJhZGdlICovfVxyXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiaW50cm8tbGFiZWxcIj5cclxuICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cImludHJvLWxhYmVsLWxpbmVcIiAvPlxyXG4gICAgICAgICAgPHNwYW4+e3QoXCJpbnRyby5iYWRnZVwiKX08L3NwYW4+XHJcbiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJpbnRyby1sYWJlbC1saW5lXCIgLz5cclxuICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgey8qIEhlYWRlciAmIERlc2NyaXB0aW9uICovfVxyXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiaW50cm8tY29udGVudFwiPlxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJpbnRyby1oZWFkaW5nXCI+XHJcbiAgICAgICAgICAgIDxoMj5cclxuICAgICAgICAgICAgICB7dChcImludHJvLnRpdGxlUGFydDFcIil9XHJcbiAgICAgICAgICAgICAgPGJyIC8+XHJcbiAgICAgICAgICAgICAgPHNwYW4+e3QoXCJpbnRyby50aXRsZVBhcnQyXCIpfTwvc3Bhbj5cclxuICAgICAgICAgICAgPC9oMj5cclxuICAgICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiaW50cm8tZGVzY3JpcHRpb25cIj5cclxuICAgICAgICAgICAgPHA+e3QoXCJpbnRyby5kZXNjcmlwdGlvblwiKX08L3A+XHJcbiAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICBjbGFzc05hbWU9XCJpbnRyby1idXR0b25cIlxyXG4gICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IG5hdmlnYXRlKFwiL2Rlc3RpbmF0aW9uc1wiKX1cclxuICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgIDxzcGFuPnt0KFwiaW50cm8uYnV0dG9uXCIpfTwvc3Bhbj5cclxuICAgICAgICAgICAgICA8QXJyb3dSaWdodFxyXG4gICAgICAgICAgICAgICAgc2l6ZT17MTZ9XHJcbiAgICAgICAgICAgICAgICBzdHJva2VXaWR0aD17Mn1cclxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cImludHJvLWJ0bi1pY29uXCJcclxuICAgICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICB7LyogRmVhdHVyZXMgQ2FyZHMgKi99XHJcbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJpbnRyby1mZWF0dXJlc1wiPlxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJpbnRyby1mZWF0dXJlXCI+XHJcbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiaW50cm8tZmVhdHVyZS1pY29uXCI+XHJcbiAgICAgICAgICAgICAgPENvbXBhc3Mgc2l6ZT17MjB9IHN0cm9rZVdpZHRoPXsxLjh9IC8+XHJcbiAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImludHJvLWZlYXR1cmUtdGV4dFwiPlxyXG4gICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cImludHJvLWZlYXR1cmUtbnVtYmVyXCI+MDE8L3NwYW4+XHJcbiAgICAgICAgICAgICAgPGgzPnt0KFwiaW50cm8uZmVhdHVyZTFUaXRsZVwiKX08L2gzPlxyXG4gICAgICAgICAgICAgIDxwPnt0KFwiaW50cm8uZmVhdHVyZTFEZXNjXCIpfTwvcD5cclxuICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImludHJvLWZlYXR1cmVcIj5cclxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJpbnRyby1mZWF0dXJlLWljb25cIj5cclxuICAgICAgICAgICAgICA8U3BhcmtsZXMgc2l6ZT17MjB9IHN0cm9rZVdpZHRoPXsxLjh9IC8+XHJcbiAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImludHJvLWZlYXR1cmUtdGV4dFwiPlxyXG4gICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cImludHJvLWZlYXR1cmUtbnVtYmVyXCI+MDI8L3NwYW4+XHJcbiAgICAgICAgICAgICAgPGgzPnt0KFwiaW50cm8uZmVhdHVyZTJUaXRsZVwiKX08L2gzPlxyXG4gICAgICAgICAgICAgIDxwPnt0KFwiaW50cm8uZmVhdHVyZTJEZXNjXCIpfTwvcD5cclxuICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImludHJvLWZlYXR1cmVcIj5cclxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJpbnRyby1mZWF0dXJlLWljb25cIj5cclxuICAgICAgICAgICAgICA8SGVhcnQgc2l6ZT17MjB9IHN0cm9rZVdpZHRoPXsxLjh9IC8+XHJcbiAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImludHJvLWZlYXR1cmUtdGV4dFwiPlxyXG4gICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cImludHJvLWZlYXR1cmUtbnVtYmVyXCI+MDM8L3NwYW4+XHJcbiAgICAgICAgICAgICAgPGgzPnt0KFwiaW50cm8uZmVhdHVyZTNUaXRsZVwiKX08L2gzPlxyXG4gICAgICAgICAgICAgIDxwPnt0KFwiaW50cm8uZmVhdHVyZTNEZXNjXCIpfTwvcD5cclxuICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgPC9kaXY+XHJcbiAgICA8L3NlY3Rpb24+XHJcbiAgKTtcclxufVxyXG5cclxuZXhwb3J0IGRlZmF1bHQgSW50cm87XHJcbiJdfQ==

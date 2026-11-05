@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import {
   Calendar,
   Users,
@@ -10,12 +10,17 @@ import {
   CheckCircle2,
   ArrowLeft,
 } from "lucide-react";
+import { AuthContext } from "../../context/AuthContext";
+import { useBooking } from "../../context/BookingContext";
 import "./Booking.css";
 
 const Booking = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { user } = useContext(AuthContext);
+  const { addBooking } = useBooking();
 
   // استخراج البيانات القادمة عبر الـ state أولاً
   const destinationState = location.state?.destination || {};
@@ -34,18 +39,21 @@ const Booking = () => {
       150,
   );
 
+  const today = new Date().toISOString().split("T")[0];
+
   // Booking form state
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
+    fullName: user?.name || "",
+    email: user?.email || "",
     phone: "",
     date: "",
-    guests: 1,
+    guests: "1",
     specialRequests: "",
     paymentMethod: "card",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [bookingRef, setBookingRef] = useState("");
 
   // Handle input changes
   const handleChange = (e) => {
@@ -53,14 +61,35 @@ const Booking = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const guests = Math.min(10, Math.max(1, Number(formData.guests) || 1));
+
   // Price calculations
-  const totalPrice = formData.guests * pricePerPerson;
+  const totalPrice = guests * pricePerPerson;
   const tax = totalPrice * 0.1; // 10% tax fee
   const grandTotal = totalPrice + tax;
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const booking = addBooking({
+      destinationId: location.state?.destinationId || destinationState.id,
+      title: destinationName,
+      destinationName,
+      location: destinationState.region || destinationState.location || "",
+      date: formData.date,
+      guests,
+      totalPrice: grandTotal,
+      image: destinationState.heroImage || destinationState.image || "",
+      phone: formData.phone,
+      specialRequests: formData.specialRequests,
+      paymentMethod: formData.paymentMethod,
+      userEmail: user?.email,
+      fullName: formData.fullName,
+      email: formData.email,
+    });
+
+    setBookingRef(booking.bookingId);
     setIsSubmitted(true);
   };
 
@@ -71,11 +100,14 @@ const Booking = () => {
           <CheckCircle2 size={64} className="success-icon" />
           <h2>Booking Confirmed!</h2>
           <p>
-            Thank you, <strong>{formData.fullName}</strong>. We have sent your
-            booking details to your email.
+            Thank you, <strong>{formData.fullName}</strong>. Your booking has
+            been saved to your trips.
           </p>
 
           <div className="booking-summary-box">
+            <p>
+              <strong>Booking reference:</strong> {bookingRef}
+            </p>
             <p>
               <strong>Destination:</strong> {destinationName}
             </p>
@@ -83,19 +115,24 @@ const Booking = () => {
               <strong>Date:</strong> {formData.date}
             </p>
             <p>
-              <strong>Guests:</strong> {formData.guests}
+              <strong>Guests:</strong> {guests}
             </p>
             <p>
               <strong>Total Amount:</strong> ${grandTotal.toFixed(2)}
             </p>
           </div>
 
-          <button
-            onClick={() => navigate("/destinations")}
-            className="back-home-btn"
-          >
-            Back to Destinations
-          </button>
+          <div className="booking-success-actions">
+            <Link to="/trips" className="back-home-btn">
+              View My Trips
+            </Link>
+            <button
+              onClick={() => navigate("/destinations")}
+              className="back-home-btn secondary"
+            >
+              Back to Destinations
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -183,6 +220,7 @@ const Booking = () => {
                       type="date"
                       name="date"
                       required
+                      min={today}
                       value={formData.date}
                       onChange={handleChange}
                     />
@@ -274,7 +312,7 @@ const Booking = () => {
               </div>
               <div className="summary-item">
                 <span>Guests:</span>
-                <span>x {formData.guests}</span>
+                <span>x {guests}</span>
               </div>
               <hr />
               <div className="summary-item">

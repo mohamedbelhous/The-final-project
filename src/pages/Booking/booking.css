@@ -218,11 +218,29 @@ textarea:focus {
   margin: 20px 0;
 }
 
+.booking-success-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
 .back-home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: #2563eb;
   color: white;
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-home-btn.secondary {
+  background: #ffffff;
+  color: #176b50;
+  border: 1px solid #cfe0d8;
 }

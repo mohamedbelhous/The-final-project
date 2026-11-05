@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import { AuthContext } from "../../context/AuthContext";
+import { isAdminUser } from "../../utils/auth";
 import "./Navbar.css";
 
 function Navbar() {
@@ -26,15 +27,7 @@ function Navbar() {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const userRole = user?.role || user?.roles || user?.userType || user?.type;
-
-  const isAdmin =
-    Boolean(user?.isAdmin) ||
-    Boolean(user?.is_admin) ||
-    Boolean(user?.user?.isAdmin) ||
-    (typeof userRole === "string" && userRole.toLowerCase() === "admin") ||
-    (Array.isArray(userRole) &&
-      userRole.some((r) => String(r).toLowerCase() === "admin"));
+  const isAdmin = isAdminUser(user);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -96,9 +89,9 @@ function Navbar() {
         {/* Right Actions */}
         <div className="navbar-actions">
           <Link
-            to="/trips"
+            to="/favorites"
             className="navbar-action-icon"
-            aria-label="Favorites"
+            aria-label={t("nav.favorites")}
           >
             <Heart size={21} strokeWidth={1.8} />
           </Link>
@@ -183,9 +176,9 @@ function Navbar() {
           </nav>
 
           <div className="mobile-menu-actions">
-            <Link to="/trips" onClick={() => setMobileOpen(false)}>
+            <Link to="/favorites" onClick={() => setMobileOpen(false)}>
               <Heart size={18} />
-              <span>Favorites</span>
+              <span>{t("nav.favorites")}</span>
             </Link>
 
             <button

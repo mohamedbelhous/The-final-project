@@ -186,6 +186,10 @@
   background-color: #ffedd5;
   color: #c2410c;
 }
+.bg-purple {
+  background-color: #ede9fe;
+  color: #6d28d9;
+}
 
 .stat-info small {
   color: #64748b;
@@ -390,4 +394,16 @@
   padding: 32px !important;
   text-align: center;
   color: #64748b;
+}
+
+.admin-empty-cell {
+  padding: 32px !important;
+  text-align: center;
+  color: #64748b;
+}
+
+.admin-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
 }
